@@ -1,0 +1,22 @@
+body{
+	font-size: 14px;
+	padding:10px;
+}
+.sourceCopied{
+	position: fixed;
+	top: 50%;
+	left: 0;
+	background-color:rgba(0,0,0,0);
+	padding: 10px;
+	color:#FFFFFF;
+	text-align: center;
+	width: 100%;
+	-webkit-transition: background-color .2s ease-in;
+	   -moz-transition: background-color .2s ease-in;
+	    -ms-transition: background-color .2s ease-in;
+	     -o-transition: background-color .2s ease-in;
+	        transition: background-color .2s ease-in;
+}
+.sourceCopied.active{
+	background-color:rgba(0,0,0,0.5);
+}
