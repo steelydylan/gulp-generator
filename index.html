@@ -409,7 +409,6 @@ var jshint = require('gulp-jshint');
 <!-- END useJsHint:veil -->
 <!-- BEGIN useBrowserify:veil -->
 var browserify = require('gulp-browserify');
-var transform = require('vinyl-transform');
 <!-- END useBrowserify:veil -->
 <!-- BEGIN useUglifyJs:veil -->
 var uglify = require('gulp-uglify');
@@ -469,13 +468,6 @@ gulp.task('{cssTask}',function(){
 		<!-- END useMinifyCss:veil -->
 });
 gulp.task('{jsTask}',function(){
-	<!-- BEGIN useBrowserify:veil -->
-	var browserified = transform(function(filename) {
-        var b = browserify(filename);
-        b.add(filename);
-        return b.bundle();
-    });
-    <!-- END useBrowserify:veil -->
 	gulp.src(['{jsSrc}/**/*.{jsExtName}'])
 		.pipe(plumber({
 			handleError: function (err) {
@@ -494,7 +486,7 @@ gulp.task('{jsTask}',function(){
   		.pipe(jshint.reporter('default'))
 		<!-- END useJsHint:veil -->
 		<!-- BEGIN useBrowserify:veil -->
-  		.pipe(browserified)
+  		.pipe(browserify())
   		<!-- END useBrowserify:veil -->
 		.pipe(gulp.dest('{jsDest}'))<!-- BEGIN useUglifyJs:empty -->;<!-- END useUglifyJs:empty -->
 		<!-- BEGIN useUglifyJs:veil -->
@@ -608,8 +600,7 @@ gulp.task('default',function(){
 		"gulp-frontnote": "*"<!-- END useCssStyleGuide:veil --><!-- BEGIN useMinifyCss:veil -->,
 		"gulp-minify-css": "*"<!-- END useMinifyCss:veil --><!-- BEGIN useAltJs:veil -->,
 		"gulp-{altJs}": "*"<!-- END useAltJs:veil --><!-- BEGIN useBrowserify:veil -->,
-		"gulp-browserify": "*",
-		"vinyl-transform": "*"<!-- END useBrowserify:veil --><!-- BEGIN useUglifyJs:veil -->,
+		"gulp-browserify": "*"<!-- END useBrowserify:veil --><!-- BEGIN useUglifyJs:veil -->,
 		"gulp-uglify": "*"<!-- END useUglifyJs:veil --><!-- BEGIN useConcatJs:veil -->,
 		"gulp-concat": "*"<!-- END useConcatJs:veil --><!-- BEGIN useJsHint:veil -->,
 		"gulp-jshint": "*"<!-- END useJsHint:veil --><!-- BEGIN useTemplateEngine:veil -->,
