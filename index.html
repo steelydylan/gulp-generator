@@ -143,6 +143,14 @@
 			<!-- END useAltJs:veil -->
 			<p>
 				<label class="acms-form-checkbox">
+					<input type="checkbox" data-bind="useBrowserify" data-action="refresh()" value="true">
+					<i class="acms-ico-checkbox"></i>
+					<!-- BEGIN lang:touch#ja -->Browserifyを使用する<!-- END lang:touch#ja -->
+					<!-- BEGIN lang:touch#en -->Use Browserify<!-- END lang:touch#en -->
+				</label>
+			</p>
+			<p>
+				<label class="acms-form-checkbox">
 					<input type="checkbox" data-bind="useJsHint" data-action="refresh()" value="true">
 					<i class="acms-ico-checkbox"></i>
 					<!-- BEGIN lang:touch#ja -->JSの構文をチェックする<!-- END lang:touch#ja -->
@@ -399,6 +407,10 @@ var jsx = require('gulp-jsx');
 <!-- BEGIN useJsHint:veil -->
 var jshint = require('gulp-jshint');
 <!-- END useJsHint:veil -->
+<!-- BEGIN useBrowserify:veil -->
+var browserify = require('gulp-browserify');
+var transform = require('vinyl-transform');
+<!-- END useBrowserify:veil -->
 <!-- BEGIN useUglifyJs:veil -->
 var uglify = require('gulp-uglify');
 <!-- END useUglifyJs:veil -->
@@ -457,6 +469,13 @@ gulp.task('{cssTask}',function(){
 		<!-- END useMinifyCss:veil -->
 });
 gulp.task('{jsTask}',function(){
+	<!-- BEGIN useBrowserify:veil -->
+	var browserified = transform(function(filename) {
+        var b = browserify(filename);
+        b.add(filename);
+        return b.bundle();
+    });
+    <!-- END useBrowserify:veil -->
 	gulp.src(['{jsSrc}/**/*.{jsExtName}'])
 		.pipe(plumber({
 			handleError: function (err) {
@@ -474,6 +493,9 @@ gulp.task('{jsTask}',function(){
 		.pipe(jshint())
   		.pipe(jshint.reporter('default'))
 		<!-- END useJsHint:veil -->
+		<!-- BEGIN useBrowserify:veil -->
+  		.pipe(browserified)
+  		<!-- END useBrowserify:veil -->
 		.pipe(gulp.dest('{jsDest}'))<!-- BEGIN useUglifyJs:empty -->;<!-- END useUglifyJs:empty -->
 		<!-- BEGIN useUglifyJs:veil -->
 		.pipe(rename({
@@ -585,7 +607,9 @@ gulp.task('default',function(){
 		"gulp-csslint": "*"<!-- END useCssLint:veil --><!-- BEGIN useCssStyleGuide:veil -->,
 		"gulp-frontnote": "*"<!-- END useCssStyleGuide:veil --><!-- BEGIN useMinifyCss:veil -->,
 		"gulp-minify-css": "*"<!-- END useMinifyCss:veil --><!-- BEGIN useAltJs:veil -->,
-		"gulp-{altJs}": "*"<!-- END useAltJs:veil --><!-- BEGIN useUglifyJs:veil -->,
+		"gulp-{altJs}": "*"<!-- END useAltJs:veil --><!-- BEGIN useBrowserify:veil -->,
+		"gulp-browserify": "*",
+		"vinyl-transform": "*"<!-- END useBrowserify:veil --><!-- BEGIN useUglifyJs:veil -->,
 		"gulp-uglify": "*"<!-- END useUglifyJs:veil --><!-- BEGIN useConcatJs:veil -->,
 		"gulp-concat": "*"<!-- END useConcatJs:veil --><!-- BEGIN useJsHint:veil -->,
 		"gulp-jshint": "*"<!-- END useJsHint:veil --><!-- BEGIN useTemplateEngine:veil -->,

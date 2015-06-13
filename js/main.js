@@ -30,6 +30,7 @@ $(function(){
 			useAltJs:"",
 			useConcatJs:"",
 			useJsHint:"",
+			useBrowserify:"",
 			// useJsDoc:"",
 			altJs:"coffee",
 			concatJs:"main.js",
