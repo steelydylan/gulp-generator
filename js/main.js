@@ -1,8 +1,16 @@
 $(function(){
+	var i18n = jQuery.i18n.browserLang();
+	var lang;
+	if(i18n.indexOf("en") !== -1){
+		lang = "en";
+	}else{
+		lang = "ja";
+	}
 	var form = new Moon.View({
 		id:"form",
 		data:{
 			mode:"css",
+			lang:lang,
 			fileMode:"gulpfile",
 			usePreprocessor:"",
 			useAutoPrefixer:"true",
@@ -22,6 +30,7 @@ $(function(){
 			useAltJs:"",
 			useConcatJs:"",
 			useJsHint:"",
+			useBrowserify:"",
 			// useJsDoc:"",
 			altJs:"coffee",
 			concatJs:"main.js",
