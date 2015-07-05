@@ -430,6 +430,11 @@ var imageMin = require('gulp-imagemin');
 var iconfont = require('gulp-iconfont');
 var consolidate = require('gulp-consolidate');
 <!-- END useIconFont:veil -->
+<!-- BEGIN useBrowserSync:veil -->
+gulp.task('reload',function(){
+	reload();
+});
+<!-- END useBrowserSync:veil -->
 gulp.task('{cssTask}',function(){
 	gulp.src(['{cssSrc}/**/*.{cssExtName}'])
 		.pipe(plumber({
