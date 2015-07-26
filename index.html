@@ -92,6 +92,23 @@
 			</p>
 			<p>
 				<label class="acms-form-checkbox">
+					<input type="checkbox" data-bind="useConcatCss" value="true" data-action="refresh()">
+					<i class="acms-ico-checkbox"></i>
+					<!-- BEGIN lang:touch#ja -->CSSを結合する<!-- END lang:touch#ja -->
+					<!-- BEGIN lang:touch#en -->Concatatenate CSS files<!-- END lang:touch#en -->
+				</label>
+			</p>
+			<!-- BEGIN useConcatCss:veil -->
+			<p>
+				<label>
+					<!-- BEGIN lang:touch#ja -->結合先のCSS名<!-- END lang:touch#ja -->
+					<!-- BEGIN lang:touch#en -->Concatatenated file name<!-- END lang:touch#en -->
+					<input type="text" data-bind="concatCss" data-action="refreshSource()">
+				</label>
+			</p>
+			<!-- END useConcatCss:veil -->
+			<p>
+				<label class="acms-form-checkbox">
 					<input type="checkbox" data-bind="useCssStyleGuide" value="true" data-action="refresh()">
 					<i class="acms-ico-checkbox"></i>
 					<!-- BEGIN lang:touch#ja -->スタイルガイドを使用する<!-- END lang:touch#ja -->
@@ -229,6 +246,15 @@
 		<!-- BEGIN mode:touch#other -->
 		<div class="acms-tabs-panel">
 			<h2><!-- BEGIN lang:touch#ja -->その他<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Others<!-- END lang:touch#en --></h2>
+			<h3><!-- BEGIN lang:touch#ja -->通知<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Notification<!-- END lang:touch#en --></h3>
+			<p>
+				<label class="acms-form-checkbox">
+					<input type="checkbox" data-bind="useNotification" data-action="refresh()" value="true">
+					<i class="acms-ico-checkbox"></i>
+					<!-- BEGIN lang:touch#ja -->タスクが完了したら通知する<!-- END lang:touch#ja -->
+					<!-- BEGIN lang:touch#en -->Notify When the tasks finished<!-- END lang:touch#en -->
+				</label>
+			</p>
 			<h3>BrowserSync</h3>
 			<p>
 				<label class="acms-form-checkbox">
@@ -414,9 +440,9 @@ var browserify = require('gulp-browserify');
 <!-- BEGIN useUglifyJs:veil -->
 var uglify = require('gulp-uglify');
 <!-- END useUglifyJs:veil -->
-<!-- BEGIN useConcatJs:veil -->
+<!-- BEGIN useConcatJsOrCss:veil -->
 var concat = require('gulp-concat');
-<!-- END useConcatJs:veil -->
+<!-- END useConcatJsOrCss:veil -->
 <!-- BEGIN useTemplateEngine:veil -->
 var {templateEngine} = require('gulp-{templateEngine}');
 <!-- END useTemplateEngine:veil -->
@@ -430,9 +456,12 @@ var imageMin = require('gulp-imagemin');
 var iconfont = require('gulp-iconfont');
 var consolidate = require('gulp-consolidate');
 <!-- END useIconFont:veil -->
+<!-- BEGIN useNotification:veil -->
+var notify = require('gulp-notify');
+<!-- END useNotification:veil -->
 <!-- BEGIN useBrowserSync:veil -->
 gulp.task('reload',function(){
-	reload();
+	reload({stream:true});
 });
 <!-- END useBrowserSync:veil -->
 gulp.task('{cssTask}',function(){
@@ -464,14 +493,18 @@ gulp.task('{cssTask}',function(){
 		.pipe(csslint())
 		.pipe(csslint.reporter())
 		<!-- END useCssLint:veil -->
-		.pipe(gulp.dest('{cssDest}'))<!-- BEGIN useMinifyCss:empty -->;<!-- END useMinifyCss:empty -->
+		<!-- BEGIN useConcatCss:veil -->
+		.pipe(concat('{conCatCss}'))
+		<!-- END useConcatCss:veil -->
+		.pipe(gulp.dest('{cssDest}'))<!-- BEGIN notUseMinifyNotifyCss:veil -->;<!-- END notUseMinifyNotifyCss:veil -->
 		<!-- BEGIN useMinifyCss:veil -->
 		.pipe(rename({
 			suffix: '.min'
 		}))
 		.pipe(minifyCss())
-		.pipe(gulp.dest('{cssDest}'));
-		<!-- END useMinifyCss:veil -->
+		.pipe(gulp.dest('{cssDest}'))<!-- BEGIN useNotification:empty -->;<!-- END useNotification:empty --><!-- END useMinifyCss:veil --><!-- BEGIN useNotification:veil -->
+		.pipe(notify('css task finished'));
+		<!-- END useNotification:veil -->
 });
 gulp.task('{jsTask}',function(){
 	gulp.src(['{jsSrc}/**/*.{jsExtName}'])
@@ -494,14 +527,17 @@ gulp.task('{jsTask}',function(){
 		<!-- BEGIN useBrowserify:veil -->
   		.pipe(browserify())
   		<!-- END useBrowserify:veil -->
-		.pipe(gulp.dest('{jsDest}'))<!-- BEGIN useUglifyJs:empty -->;<!-- END useUglifyJs:empty -->
+		.pipe(gulp.dest('{jsDest}'))<!-- BEGIN notUseMinifyNotifyJs:veil -->;<!-- END notUseMinifyNotifyJs:veil -->
 		<!-- BEGIN useUglifyJs:veil -->
 		.pipe(rename({
 			suffix: '.min'
 		}))
 		.pipe(uglify())
-		.pipe(gulp.dest('{jsDest}'));
+		.pipe(gulp.dest('{jsDest}'))<!-- BEGIN useNotification:empty -->;<!-- END useNotification:empty -->
 		<!-- END useUglifyJs:veil -->
+		<!-- BEGIN useNotification:veil -->
+  		.pipe(notify('js task finished'));
+  		<!-- END useNotification:veil -->
 });
 gulp.task('{htmlTask}',function(){
 	gulp.src(['{htmlSrc}/**/*.{htmlExtName}'])
@@ -514,11 +550,16 @@ gulp.task('{htmlTask}',function(){
 		<!-- BEGIN useTemplateEngine:veil -->
 		.pipe({templateEngine}())
 		<!-- END useTemplateEngine:veil -->
-		.pipe(gulp.dest('{htmlDest}'))<!-- BEGIN useMinifyHtml:empty -->;<!-- END useMinifyHtml:empty -->
+		<!-- BEGIN useMinifyHtml:empty -->
+		.pipe(gulp.dest('{htmlDest}'))<!-- BEGIN useNotification:empty -->;<!-- END useNotification:empty -->
+		<!-- END useMinifyHtml:empty -->
 		<!-- BEGIN useMinifyHtml:veil -->
 		.pipe(minifyHtml())
-		.pipe(gulp.dest('{htmlDest}'))
+		.pipe(gulp.dest('{htmlDest}'))<!-- BEGIN useNotification:empty -->;<!-- END useNotification:empty -->
 		<!-- END useMinifyHtml:veil -->
+		<!-- BEGIN useNotification:veil -->
+		.pipe(notify('html task finished'));
+		<!-- END useNotification:veil -->
 });
 <!-- BEGIN useImageMin:veil -->
 gulp.task('image',function(){
@@ -588,7 +629,7 @@ gulp.task('default',function(){
 <script type="text/template" id="package">
 {
 	"name": "gulpfile_generator",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "This is a genarator for gulpfile and package.json",
 	"author": "steelydylan",
 	"url": "http://horicdesign.com",
@@ -607,8 +648,8 @@ gulp.task('default',function(){
 		"gulp-minify-css": "*"<!-- END useMinifyCss:veil --><!-- BEGIN useAltJs:veil -->,
 		"gulp-{altJs}": "*"<!-- END useAltJs:veil --><!-- BEGIN useBrowserify:veil -->,
 		"gulp-browserify": "*"<!-- END useBrowserify:veil --><!-- BEGIN useUglifyJs:veil -->,
-		"gulp-uglify": "*"<!-- END useUglifyJs:veil --><!-- BEGIN useConcatJs:veil -->,
-		"gulp-concat": "*"<!-- END useConcatJs:veil --><!-- BEGIN useJsHint:veil -->,
+		"gulp-uglify": "*"<!-- END useUglifyJs:veil --><!-- BEGIN useConcatJsOrCss:veil -->,
+		"gulp-concat": "*"<!-- END useConcatJsOrCss:veil --><!-- BEGIN useJsHint:veil -->,
 		"gulp-jshint": "*"<!-- END useJsHint:veil --><!-- BEGIN useTemplateEngine:veil -->,
 		"gulp-{templateEngine}": "*"<!-- END useTemplateEngine:veil --><!-- BEGIN useMinifyHtml:veil -->,
 		"gulp-minify-html": "*"<!-- END useMinifyHtml:veil --><!-- BEGIN useImageMin:veil -->,
@@ -616,7 +657,8 @@ gulp.task('default',function(){
 		"gulp-iconfont": "*",
 		"gulp-consolidate": "*",
 		"lodash": "*"<!-- END useIconFont:veil --><!-- BEGIN useBrowserSync:veil -->,
-		"browser-sync": "*"<!-- END useBrowserSync:veil -->
+		"browser-sync": "*"<!-- END useBrowserSync:veil --><!-- BEGIN useNotification:veil -->,
+		"gulp-notify": "*"<!-- END useNotification:veil -->
 	}
 }
 </script>

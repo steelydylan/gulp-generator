@@ -23,6 +23,8 @@ $(function(){
 			useCmq:"true",
 			useCssStyleGuide:"",
 			useCssLint:"",
+			useConcatCss:"",
+			conCatCss:"main.css",
 			jsSrc:"js/src",
 			jsDest:"js/dist",
 			// jsDocDest:"docs/js",
@@ -50,6 +52,21 @@ $(function(){
 			useBrowserSync:"",
 			browserSyncDir:"./",
 			browserSyncLocal:"true",
+			useNotification:"",
+			useConcatJsOrCss:function(){
+				if(this.data.useConcatJs || this.data.useConcatCss){
+					return true;
+				}else{
+					return false;
+				}
+			},
+			notUseMinifyNotifyCss:function(){
+				if(!this.data.useMinifyCss && !this.data.useNotification){
+					return true;
+				}else{
+					return false;
+				}
+			},
 			cssExtName:function(){
 				var preprocessor = this.data.cssPreprocessor;
 				if(!this.data.usePreprocessor){
@@ -72,6 +89,13 @@ $(function(){
 					return data.cssPreprocessor;
 				}
 			},
+			notUseMinifyNotifyJs:function(){
+				if(!this.data.useUglifyJs && !this.data.useNotification){
+					return true;
+				}else{
+					return false;
+				}
+			},
 			jsExtName:function(){
 				var data = this.data;
 				if(!data.useAltJs){
@@ -90,6 +114,13 @@ $(function(){
 					return "js";
 				}else{
 					return data.altJs;
+				}
+			},
+			useMinifyHtmlOnly:function(){
+				if(!this.data.useMinifyHtml && this.data.useNotification){
+					return true;
+				}else{
+					return false;
 				}
 			},
 			htmlExtName:function(){
