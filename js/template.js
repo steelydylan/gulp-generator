@@ -149,8 +149,9 @@
         loadData:function(key){
             var data = JSON.parse(localStorage.getItem(key));
             if(data){
-                console.log(data);
-                this.data = data;
+                for(var key in data){
+                    this.data[key] = data[key];
+                }
             }
         },
         getRand: function (a, b) {
