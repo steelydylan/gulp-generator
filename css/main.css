@@ -20,3 +20,6 @@ body{
 .sourceCopied.active{
 	background-color:rgba(0,0,0,0.5);
 }
+.githubBox{
+	padding: 15px 10px;
+}
