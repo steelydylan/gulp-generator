@@ -4,7 +4,7 @@
 	<title>gulpfile generator</title>
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/acms.css">
-	<link rel="stylesheet" type="text/css" href="css/prism.css">
+	<link rel="stylesheet" href="css/prism-tommorrow.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
@@ -16,12 +16,14 @@
 <script type="text/template" id="form">
 <div class="acms-col-6">
 	<div class="acms-tabs">
-		<ul class="js-acms_tabs">
-			<li><a href="#" class="js-acms_tab <!-- BEGIN mode:touch#css -->js-acms_tab-active<!-- END mode:touch#css -->" data-action="changeMode(css)">css</a></li>
-			<li><a href="#" class="js-acms_tab <!-- BEGIN mode:touch#js -->js-acms_tab-active<!-- END mode:touch#js -->" data-action="changeMode(js)">js</a></li>
-			<li><a href="#" class="js-acms_tab <!-- BEGIN mode:touch#html -->js-acms_tab-active<!-- END mode:touch#html -->" data-action="changeMode(html)">html</a></li>
-			<li><a href="#" class="js-acms_tab <!-- BEGIN mode:touch#other -->js-acms_tab-active<!-- END mode:touch#other -->" data-action="changeMode(other)"><!-- BEGIN lang:touch#ja -->その他<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Others<!-- END lang:touch#en --></a></li>
-		</ul>
+		<div class="generatorTabWrap">
+			<ul class="generatorTab">
+				<li<!-- BEGIN mode:touch#css --> class="current"<!-- END mode:touch#css -->><a href="#" data-action="changeMode(css)">css</a></li>
+				<li<!-- BEGIN mode:touch#js --> class="current"<!-- END mode:touch#js -->><a href="#" data-action="changeMode(js)">js</a></li>
+				<li<!-- BEGIN mode:touch#html --> class="current"<!-- END mode:touch#html -->><a href="#" data-action="changeMode(html)">html</a></li>
+				<li<!-- BEGIN mode:touch#other --> class="current"<!-- END mode:touch#other -->><a href="#" data-action="changeMode(other)"><!-- BEGIN lang:touch#ja -->その他<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Others<!-- END lang:touch#en --></a></li>
+			</ul>
+		</div>
 		<!-- BEGIN mode:touch#css -->
 		<div class="acms-tabs-panel">
 			<h2>CSS</h2>
@@ -361,10 +363,12 @@
 </div>
 <div class="acms-col-6">
 	<div class="acms-tabs">
-		<ul class="js-acms_tabs">
-			<li><a href="#" class="js-acms_tab <!-- BEGIN fileMode:touch#gulpfile -->js-acms_tab-active<!-- END fileMode:touch#gulpfile -->" data-action="changeFileMode(gulpfile)">gulpfile.js</a></li>
-			<li><a href="#" class="js-acms_tab <!-- BEGIN fileMode:touch#package -->js-acms_tab-active<!-- END fileMode:touch#package -->" data-action="changeFileMode(package)">package.json</a></li>
-		</ul>
+		<div class="generatorTabWrap">
+			<ul class="generatorTab">
+				<li<!-- BEGIN fileMode:touch#gulpfile --> class="current"<!-- END fileMode:touch#gulpfile -->><a href="#" data-action="changeFileMode(gulpfile)">gulpfile.js</a></li>
+				<li<!-- BEGIN fileMode:touch#package --> class="current"<!-- END fileMode:touch#package -->><a href="#" data-action="changeFileMode(package)">package.json</a></li>
+			</ul>
+		</div>
 		<!-- BEGIN fileMode:touch#gulpfile -->
 		<div class="acms-tabs-panel">
 			<button class="acms-btn" data-action="sourceCopy"><!-- BEGIN lang:touch#ja -->ソースをコピー<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Copy the source<!-- END lang:touch#en --></button>
