@@ -498,7 +498,7 @@ gulp.task('{cssTask}',function(){
 		.pipe(csslint.reporter())
 		<!-- END useCssLint:veil -->
 		<!-- BEGIN useConcatCss:veil -->
-		.pipe(concat('{conCatCss}'))
+		.pipe(concat('{concatCss}'))
 		<!-- END useConcatCss:veil -->
 		.pipe(gulp.dest('{cssDest}'))<!-- BEGIN notUseMinifyNotifyCss:veil -->;<!-- END notUseMinifyNotifyCss:veil -->
 		<!-- BEGIN useMinifyCss:veil -->
