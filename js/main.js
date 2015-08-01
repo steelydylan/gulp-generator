@@ -24,7 +24,7 @@ $(function(){
 			useCssStyleGuide:"",
 			useCssLint:"",
 			useConcatCss:"",
-			conCatCss:"main.css",
+			concatCss:"main.css",
 			jsSrc:"js/src",
 			jsDest:"js/dist",
 			// jsDocDest:"docs/js",
