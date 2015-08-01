@@ -24,6 +24,13 @@ body{
 	font-size: 14px;
 	padding:10px;
 }
+.logo{
+	color: #333333;
+	text-shadow:#FFF 0 -1px 0;
+	font-size: 2em;
+	margin: 0 0 0.67em 0;
+	font-family: garamond;
+}
 .sourceCopied{
 	position: fixed;
 	top: 50%;
