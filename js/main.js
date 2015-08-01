@@ -191,12 +191,14 @@ $(function(){
 				package.update("text");
 				Prism.highlightElement($('#code')[0]);
 				Prism.highlightElement($('#jsoncode')[0]);
+				form.saveData("gulpSettings");
 			},
 			refreshSource:function(){
 				source.update("text");
 				package.update("text");
 				Prism.highlightElement($('#code')[0]);
 				Prism.highlightElement($('#jsoncode')[0]);
+				form.saveData("gulpSettings");
 			},
 			showAlert:function(){
 				var $alert = $("<div class='sourceCopied'>クリップボードにソースをコピーしました</div>");
@@ -235,6 +237,7 @@ $(function(){
 			}
 		},
 	});
+	form.loadData("gulpSettings");
 	var source = new Moon.View({
 		id:"source",
 		data:form.data,
