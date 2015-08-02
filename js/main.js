@@ -201,7 +201,11 @@ $(function(){
 				form.saveData("gulpSettings");
 			},
 			showAlert:function(){
-				var $alert = $("<div class='sourceCopied'>クリップボードにソースをコピーしました</div>");
+				if(lang == "ja"){
+					var $alert = $("<div class='sourceCopied'>クリップボードにソースをコピーしました</div>");
+				}else{
+					var $alert = $("<div class='sourceCopied'>Copied the source into the clipboard</div>");					
+				}
                 $("body").append($alert);
                 $alert.delay(1).queue(function(next){
                     $(this).addClass("active");
