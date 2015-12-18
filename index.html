@@ -498,7 +498,7 @@ gulp.task('{cssTask}',function(){
 		.pipe(cssComb())
 		<!-- END useCssComb:veil -->
 		<!-- BEGIN useCmq:veil -->
-		.pipe(cmq())
+		.pipe(cmq({log:true}))
 		<!-- END useCmq:veil -->
 		<!-- BEGIN useCssLint:veil -->
 		.pipe(csslint())
