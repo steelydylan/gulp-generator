@@ -419,7 +419,7 @@ var autoPrefixer = require('gulp-autoprefixer');
 var cssComb = require('gulp-csscomb');
 <!-- END useCssComb:veil -->
 <!-- BEGIN useCmq:veil -->
-var cmq = require('gulp-combine-media-queries');
+var cmq = require('gulp-merge-media-queries');
 <!-- END useCmq:veil -->
 <!-- BEGIN useCssStyleGuide:veil -->
 var frontnote = require('gulp-frontnote');
@@ -461,6 +461,7 @@ var minifyHtml = require('gulp-minify-html');
 <!-- END useMinifyHtml:veil -->
 <!-- BEGIN useImageMin:veil -->
 var imageMin = require('gulp-imagemin');
+var cache = require('gulp-cache');
 <!-- END useImageMin:veil -->
 <!-- BEGIN useIconFont:veil -->
 var iconfont = require('gulp-iconfont');
@@ -580,7 +581,7 @@ gulp.task('image',function(){
 				this.emit('end');
 			}
 		}))
-		.pipe(imageMin())
+		.pipe(cache(imageMin()))
 		.pipe(gulp.dest('{imageDest}'));
 });
 <!-- END useImageMin:veil -->
@@ -652,7 +653,7 @@ gulp.task('default',function(){
 		"gulp-{cssPreprocessor}": "*"<!-- END usePreprocessor:veil --><!-- BEGIN useAutoPrefixer:veil -->,
 		"gulp-autoprefixer": "*"<!-- END useAutoPrefixer:veil --><!-- BEGIN useCssComb:veil -->,
 		"gulp-csscomb": "*"<!-- END useCssComb:veil --><!-- BEGIN useCmq:veil -->,
-		"gulp-combine-media-queries": "*"<!-- END useCmq:veil --><!-- BEGIN useCssLint:veil -->,
+		"gulp-merge-media-queries": "*"<!-- END useCmq:veil --><!-- BEGIN useCssLint:veil -->,
 		"gulp-csslint": "*"<!-- END useCssLint:veil --><!-- BEGIN useCssStyleGuide:veil -->,
 		"gulp-frontnote": "*"<!-- END useCssStyleGuide:veil --><!-- BEGIN useMinifyCss:veil -->,
 		"gulp-minify-css": "*"<!-- END useMinifyCss:veil --><!-- BEGIN useAltJs:veil -->,
@@ -663,7 +664,8 @@ gulp.task('default',function(){
 		"gulp-jshint": "*"<!-- END useJsHint:veil --><!-- BEGIN useTemplateEngine:veil -->,
 		"gulp-{templateEngine}": "*"<!-- END useTemplateEngine:veil --><!-- BEGIN useMinifyHtml:veil -->,
 		"gulp-minify-html": "*"<!-- END useMinifyHtml:veil --><!-- BEGIN useImageMin:veil -->,
-		"gulp-imagemin": "*"<!-- END useImageMin:veil --><!-- BEGIN useIconFont:veil -->,
+		"gulp-imagemin": "*",
+		"gulp-cache": "*"<!-- END useImageMin:veil --><!-- BEGIN useIconFont:veil -->,
 		"gulp-iconfont": "*",
 		"gulp-consolidate": "*",
 		"lodash": "*"<!-- END useIconFont:veil --><!-- BEGIN useBrowserSync:veil -->,
