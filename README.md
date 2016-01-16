@@ -1,4 +1,4 @@
-<p style="text-align:center;">
+<p align="center">
   <a href="http://steelydylan.github.io/gulp-generator/">
     <img src="https://raw.github.com/steelydylan/gulp-generator/master/gulp-generator.png">
   </a>
