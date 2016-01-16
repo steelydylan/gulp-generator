@@ -414,6 +414,8 @@ var csslint = require('gulp-csslint');
 <!-- END useCssLint:veil -->
 <!-- BEGIN useAutoPrefixer:veil -->
 var autoPrefixer = require('gulp-autoprefixer');
+//if node version is lower than v.0.1.2
+require('es6-promise').polyfill();
 <!-- END useAutoPrefixer:veil -->
 <!-- BEGIN useCssComb:veil -->
 var cssComb = require('gulp-csscomb');
@@ -651,7 +653,8 @@ gulp.task('default',function(){
 		"gulp-plumber": "*"<!-- BEGIN useRename:veil -->,
 		"gulp-rename": "*"<!-- END useRename:veil --><!-- BEGIN usePreprocessor:veil -->,
 		"gulp-{cssPreprocessor}": "*"<!-- END usePreprocessor:veil --><!-- BEGIN useAutoPrefixer:veil -->,
-		"gulp-autoprefixer": "*"<!-- END useAutoPrefixer:veil --><!-- BEGIN useCssComb:veil -->,
+		"gulp-autoprefixer": "*",
+		"es6-promise": "*",<!-- END useAutoPrefixer:veil --><!-- BEGIN useCssComb:veil -->,
 		"gulp-csscomb": "*"<!-- END useCssComb:veil --><!-- BEGIN useCmq:veil -->,
 		"gulp-merge-media-queries": "*"<!-- END useCmq:veil --><!-- BEGIN useCssLint:veil -->,
 		"gulp-csslint": "*"<!-- END useCssLint:veil --><!-- BEGIN useCssStyleGuide:veil -->,
