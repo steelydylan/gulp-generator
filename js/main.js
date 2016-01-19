@@ -60,8 +60,15 @@ $(function(){
 					return false;
 				}
 			},
-			notUseMinifyNotifyCss:function(){
-				if(!this.data.useMinifyCss && !this.data.useNotification){
+			useSourceMap:function(){
+				if(this.data.useSourceMapCss || this.data.useSourceMapJs){
+					return true;
+				}else{
+					return false;
+				}
+			},
+			useCssStream:function(){
+				if(this.data.useSourceMapCss && this.data.usePreprocessor){
 					return true;
 				}else{
 					return false;
@@ -89,8 +96,8 @@ $(function(){
 					return data.cssPreprocessor;
 				}
 			},
-			notUseMinifyNotifyJs:function(){
-				if(!this.data.useUglifyJs && !this.data.useNotification){
+			useJsStream:function(){
+				if(this.data.useAltJs && this.data.useSourceMapJs){
 					return true;
 				}else{
 					return false;

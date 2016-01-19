@@ -65,6 +65,14 @@
 				<option value="less">less</option>
 				<option value="stylus">stylus</option>
 			</select>
+			<p>
+				<label class="acms-form-checkbox">
+					<input type="checkbox" data-bind="useSourceMapCss" value="true" data-action="refresh()">
+					<i class="acms-ico-checkbox"></i>
+					<!-- BEGIN lang:touch#ja -->ソースマップを使用する<!-- END lang:touch#ja -->
+					<!-- BEGIN lang:touch#en -->Use SourceMap<!-- END lang:touch#en -->
+				</label>
+			</p>
 			<!-- END usePreprocessor:veil -->
 			<p>
 				<label class="acms-form-checkbox">
@@ -166,6 +174,14 @@
 				<option value="typescript">typescript</option>
 				<option value="jsx">jsx</option>
 			</select>
+			<p>
+				<label class="acms-form-checkbox">
+					<input type="checkbox" data-bind="useSourceMapJs" value="true" data-action="refresh()">
+					<i class="acms-ico-checkbox"></i>
+					<!-- BEGIN lang:touch#ja -->ソースマップを使用する<!-- END lang:touch#ja -->
+					<!-- BEGIN lang:touch#en -->Use SourceMap<!-- END lang:touch#en -->
+				</label>
+			</p>
 			<!-- END useAltJs:veil -->
 			<p>
 				<label class="acms-form-checkbox">
@@ -398,6 +414,9 @@ var plumber = require('gulp-plumber');
 <!-- BEGIN useRename:veil -->
 var rename = require('gulp-rename');
 <!-- END useRename:veil -->
+<!-- BEGIN useSourceMap:veil -->
+var sourcemaps = require('gulp-sourcemaps');
+<!-- END useSourceMap:veil -->
 <!-- BEGIN usePreprocessor:veil -->
 <!-- BEGIN cssPreprocessor:touch#sass -->
 var sass = require('gulp-sass');
@@ -472,11 +491,6 @@ var consolidate = require('gulp-consolidate');
 <!-- BEGIN useNotification:veil -->
 var notify = require('gulp-notify');
 <!-- END useNotification:veil -->
-<!-- BEGIN useBrowserSync:veil -->
-gulp.task('reload',function(){
-	reload();
-});
-<!-- END useBrowserSync:veil -->
 gulp.task('{cssTask}',function(){
 	gulp.src(['{cssSrc}/**/*.{cssExtName}'])
 		.pipe(plumber({
@@ -491,6 +505,9 @@ gulp.task('{cssTask}',function(){
 		}))
 		<!-- END useCssStyleGuide:veil -->
 		<!-- BEGIN usePreprocessor:veil -->
+		<!-- BEGIN useSourceMapCss:veil -->
+		.pipe(sourcemaps.init())
+		<!-- END useSourceMapCss:veil -->
 		.pipe({cssPreprocessor}())
 		<!-- END usePreprocessor:veil -->
 		<!-- BEGIN useAutoPrefixer:veil -->
@@ -509,14 +526,27 @@ gulp.task('{cssTask}',function(){
 		<!-- BEGIN useConcatCss:veil -->
 		.pipe(concat('{concatCss}'))
 		<!-- END useConcatCss:veil -->
-		.pipe(gulp.dest('{cssDest}'))<!-- BEGIN notUseMinifyNotifyCss:veil -->;<!-- END notUseMinifyNotifyCss:veil -->
+		<!-- BEGIN useMinifyCss:empty -->
+		<!-- BEGIN useCssStream:veil -->
+		.pipe(sourcemaps.write())
+		<!-- END useCssStream:veil -->
+		<!-- END useMinifyCss:empty -->
+		.pipe(gulp.dest('{cssDest}'))
 		<!-- BEGIN useMinifyCss:veil -->
 		.pipe(rename({
 			suffix: '.min'
 		}))
 		.pipe(minifyCss())
-		.pipe(gulp.dest('{cssDest}'))<!-- BEGIN useNotification:empty -->;<!-- END useNotification:empty --><!-- END useMinifyCss:veil --><!-- BEGIN useNotification:veil -->
-		.pipe(notify('css task finished'));
+		<!-- BEGIN useCssStream:veil -->
+		.pipe(sourcemaps.write())
+		<!-- END useCssStream:veil -->
+		.pipe(gulp.dest('{cssDest}'))
+		<!-- END useMinifyCss:veil -->
+		<!-- BEGIN useBrowserSync:veil -->
+		.pipe(reload(<!-- BEGIN useCssStream:veil -->{stream:true}<!-- END useCssStream:veil -->))
+		<!-- END useBrowserSync:veil -->
+		<!-- BEGIN useNotification:veil -->
+		.pipe(notify('css task finished'))
 		<!-- END useNotification:veil -->
 });
 gulp.task('{jsTask}',function(){
@@ -528,6 +558,9 @@ gulp.task('{jsTask}',function(){
 			}
 		}))
 		<!-- BEGIN useAltJs:veil -->
+		<!-- BEGIN useSourceMapJs:veil -->
+		.pipe(sourcemaps.init())
+		<!-- END useSourceMapJs:veil -->
 		.pipe({altJs}())
 		<!-- END useAltJs:veil -->
 		<!-- BEGIN useConcatJs:veil -->
@@ -540,16 +573,27 @@ gulp.task('{jsTask}',function(){
 		<!-- BEGIN useBrowserify:veil -->
   		.pipe(browserify())
   		<!-- END useBrowserify:veil -->
-		.pipe(gulp.dest('{jsDest}'))<!-- BEGIN notUseMinifyNotifyJs:veil -->;<!-- END notUseMinifyNotifyJs:veil -->
+  		<!-- BEGIN useUglifyJs:empty -->
+  		<!-- BEGIN useSourceMapJs:veil -->
+		.pipe(sourcemaps.write())
+		<!-- END useSourceMapJs:veil -->
+		<!-- END useUglifyJs:empty -->
+		.pipe(gulp.dest('{jsDest}'))
 		<!-- BEGIN useUglifyJs:veil -->
 		.pipe(rename({
 			suffix: '.min'
 		}))
 		.pipe(uglify())
-		.pipe(gulp.dest('{jsDest}'))<!-- BEGIN useNotification:empty -->;<!-- END useNotification:empty -->
+		<!-- BEGIN useJsStream:veil -->
+		.pipe(sourcemaps.write())
+		<!-- END useJsStream:veil -->
+		.pipe(gulp.dest('{jsDest}'))
 		<!-- END useUglifyJs:veil -->
+		<!-- BEGIN useBrowserSync:veil -->
+		.pipe(reload(<!-- BEGIN useJsStream:veil -->{stream:true}<!-- END useJsStream:veil -->))
+		<!-- END useBrowserSync:veil -->
 		<!-- BEGIN useNotification:veil -->
-  		.pipe(notify('js task finished'));
+  		.pipe(notify('js task finished'))
   		<!-- END useNotification:veil -->
 });
 gulp.task('{htmlTask}',function(){
@@ -570,8 +614,11 @@ gulp.task('{htmlTask}',function(){
 		.pipe(minifyHtml())
 		.pipe(gulp.dest('{htmlDest}'))<!-- BEGIN useNotification:empty -->;<!-- END useNotification:empty -->
 		<!-- END useMinifyHtml:veil -->
+		<!-- BEGIN useBrowserSync:veil -->
+		.pipe(reload())
+		<!-- END useBrowserSync:veil -->
 		<!-- BEGIN useNotification:veil -->
-		.pipe(notify('html task finished'));
+		.pipe(notify('html task finished'))
 		<!-- END useNotification:veil -->
 });
 <!-- BEGIN useImageMin:veil -->
@@ -584,7 +631,13 @@ gulp.task('image',function(){
 			}
 		}))
 		.pipe(cache(imageMin()))
-		.pipe(gulp.dest('{imageDest}'));
+		.pipe(gulp.dest('{imageDest}'))
+		<!-- BEGIN useBrowserSync:veil -->
+		.pipe(reload())
+		<!-- END useBrowserSync:veil -->
+		<!-- BEGIN useNotification:veil -->
+		.pipe(notify('image task finished'))
+		<!-- END useNotification:veil -->
 });
 <!-- END useImageMin:veil -->
 <!-- BEGIN useIconFont:veil -->
@@ -614,7 +667,10 @@ gulp.task('iconfont', function(){
 				}))
 				.pipe(gulp.dest('{iconFontDest}/template'));
 		})
-		.pipe(gulp.dest('{iconFontDest}'));
+		.pipe(gulp.dest('{iconFontDest}'))
+		<!-- BEGIN useBrowserSync:veil -->
+		.pipe(reload())
+		<!-- END useBrowserSync:veil -->
 });
 <!-- END useIconFont:veil -->
 gulp.task('default',function(){
@@ -628,14 +684,14 @@ gulp.task('default',function(){
         <!-- END browserSyncLocal:empty -->
     });
     <!-- END useBrowserSync:veil -->
-	gulp.watch('{jsSrc}/**/*.{jsExtName}',['{jsTask}'<!-- BEGIN useBrowserSync:veil -->,'reload'<!-- END useBrowserSync:veil -->]);
-	gulp.watch('{cssSrc}/**/*.{cssExtName}',['{cssTask}'<!-- BEGIN useBrowserSync:veil -->,'reload'<!-- END useBrowserSync:veil -->]);
-	gulp.watch('{htmlSrc}/**/*.{htmlExtName}',['{htmlTask}'<!-- BEGIN useBrowserSync:veil -->,'reload'<!-- END useBrowserSync:veil -->]);
+	gulp.watch('{jsSrc}/**/*.{jsExtName}',['{jsTask}']);
+	gulp.watch('{cssSrc}/**/*.{cssExtName}',['{cssTask}']);
+	gulp.watch('{htmlSrc}/**/*.{htmlExtName}',['{htmlTask}']);
 	<!-- BEGIN useImageTask:veil -->
-	gulp.watch('{imageSrc}/**/*',[{imageTasks}]);
+	gulp.watch('{imageSrc}/**/*',['image']);
 	<!-- END useImageTask:veil -->
 	<!-- BEGIN useIconFont:veil -->
-	gulp.watch('{iconFontSrc}/**/*.svg',['iconfont'<!-- BEGIN useBrowserSync:veil -->,'reload'<!-- END useBrowserSync:veil -->]);
+	gulp.watch('{iconFontSrc}/**/*.svg',['iconfont']);
 	<!-- END useIconFont:veil -->
 });
 </script>
@@ -651,7 +707,8 @@ gulp.task('default',function(){
 	"devDependencies":{
 		"gulp": "*",
 		"gulp-plumber": "*"<!-- BEGIN useRename:veil -->,
-		"gulp-rename": "*"<!-- END useRename:veil --><!-- BEGIN usePreprocessor:veil -->,
+		"gulp-rename": "*"<!-- END useRename:veil --><!-- BEGIN useSourceMap:veil -->,
+		"gulp-sourcemaps": "*"<!-- END useSourceMap:veil --><!-- BEGIN usePreprocessor:veil -->,
 		"gulp-{cssPreprocessor}": "*"<!-- END usePreprocessor:veil --><!-- BEGIN useAutoPrefixer:veil -->,
 		"gulp-autoprefixer": "*",
 		"es6-promise": "*"<!-- END useAutoPrefixer:veil --><!-- BEGIN useCssComb:veil -->,
