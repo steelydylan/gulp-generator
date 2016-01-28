@@ -74,6 +74,16 @@
 				</label>
 			</p>
 			<!-- END usePreprocessor:veil -->
+			<!-- BEGIN cssPreprocessor:touch#sass -->
+			<p>
+				<label class="acms-form-checkbox">
+					<input type="checkbox" data-bind="useBourbonNeat" value="true" data-action="refresh()">
+					<i class="acms-ico-checkbox"></i>
+					<!-- BEGIN lang:touch#ja -->Bourbon Neatを使用する<!-- END lang:touch#ja -->
+					<!-- BEGIN lang:touch#en -->Use Bourbon Neat<!-- END lang:touch#en -->
+				</label>
+			</p>
+			<!-- END cssPreprocessor:touch#sass -->
 			<p>
 				<label class="acms-form-checkbox">
 					<input type="checkbox" data-bind="useAutoPrefixer" value="true" data-action="refresh()">
@@ -508,7 +518,9 @@ gulp.task('{cssTask}',function(){
 		<!-- BEGIN useSourceMapCss:veil -->
 		.pipe(sourcemaps.init())
 		<!-- END useSourceMapCss:veil -->
-		.pipe({cssPreprocessor}())
+		.pipe({cssPreprocessor}(<!-- BEGIN cssPreprocessor:touch#sass --><!-- END cssPreprocessor:touch#sass --><!-- BEGIN useBourbonNeat:veil -->\{
+			includePaths: require('node-neat').includePaths
+		\}<!-- END useBourbonNeat:veil -->))
 		<!-- END usePreprocessor:veil -->
 		<!-- BEGIN useAutoPrefixer:veil -->
 		.pipe(autoPrefixer())
@@ -709,7 +721,8 @@ gulp.task('default',function(){
 		"gulp-plumber": "*"<!-- BEGIN useRename:veil -->,
 		"gulp-rename": "*"<!-- END useRename:veil --><!-- BEGIN useSourceMap:veil -->,
 		"gulp-sourcemaps": "*"<!-- END useSourceMap:veil --><!-- BEGIN usePreprocessor:veil -->,
-		"gulp-{cssPreprocessor}": "*"<!-- END usePreprocessor:veil --><!-- BEGIN useAutoPrefixer:veil -->,
+		"gulp-{cssPreprocessor}": "*"<!-- END usePreprocessor:veil --><!-- BEGIN cssPreprocessor:touch#sass --><!-- BEGIN useBourbonNeat:veil -->,
+		"node-neat": "*"<!-- END useBourbonNeat:veil --><!-- END cssPreprocessor:touch#sass --><!-- BEGIN useAutoPrefixer:veil -->,
 		"gulp-autoprefixer": "*",
 		"es6-promise": "*"<!-- END useAutoPrefixer:veil --><!-- BEGIN useCssComb:veil -->,
 		"gulp-csscomb": "*"<!-- END useCssComb:veil --><!-- BEGIN useCmq:veil -->,
