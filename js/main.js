@@ -198,6 +198,7 @@ $(function(){
 				package.update("text");
 				Prism.highlightElement($('#code')[0]);
 				Prism.highlightElement($('#jsoncode')[0]);
+				form.data.shortenedUrl = null;
 				form.saveData("gulpSettings");
 			},
 			refreshSource:function(){
@@ -205,6 +206,7 @@ $(function(){
 				package.update("text");
 				Prism.highlightElement($('#code')[0]);
 				Prism.highlightElement($('#jsoncode')[0]);
+				form.data.shortenedUrl = null;
 				form.saveData("gulpSettings");
 			},
 			showAlert:function(){
