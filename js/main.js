@@ -253,7 +253,9 @@ $(function(){
 				zip.file('data', strings);
 				var hash = zip.generate({ type: "base64" });
 				var key = "AIzaSyCWP_hFdFq5rvUIgaZA6woBYipqm_idMCY";
-				var url = location.href + "#" + hash;
+				location.hash = hash;
+				var url = location.href;
+				location.hash = "";
 				$.ajax({
 					url: "https://www.googleapis.com/urlshortener/v1/url?key=" + key,
 			        type: "POST",
