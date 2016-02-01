@@ -65,15 +65,6 @@
 				<option value="less">less</option>
 				<option value="stylus">stylus</option>
 			</select>
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useSourceMapCss" value="true" data-action="refresh()">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->ソースマップを使用する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Use SourceMap<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<!-- END usePreprocessor:veil -->
 			<!-- BEGIN cssPreprocessor:touch#sass -->
 			<p>
 				<label class="acms-form-checkbox">
@@ -84,6 +75,15 @@
 				</label>
 			</p>
 			<!-- END cssPreprocessor:touch#sass -->
+			<p>
+				<label class="acms-form-checkbox">
+					<input type="checkbox" data-bind="useSourceMapCss" value="true" data-action="refresh()">
+					<i class="acms-ico-checkbox"></i>
+					<!-- BEGIN lang:touch#ja -->ソースマップを使用する<!-- END lang:touch#ja -->
+					<!-- BEGIN lang:touch#en -->Use SourceMap<!-- END lang:touch#en -->
+				</label>
+			</p>
+			<!-- END usePreprocessor:veil -->
 			<p>
 				<label class="acms-form-checkbox">
 					<input type="checkbox" data-bind="useAutoPrefixer" value="true" data-action="refresh()">
@@ -624,11 +624,11 @@ gulp.task('{htmlTask}',function(){
 		.pipe({templateEngine}())
 		<!-- END useTemplateEngine:veil -->
 		<!-- BEGIN useMinifyHtml:empty -->
-		.pipe(gulp.dest('{htmlDest}'))<!-- BEGIN useNotification:empty -->;<!-- END useNotification:empty -->
+		.pipe(gulp.dest('{htmlDest}'))
 		<!-- END useMinifyHtml:empty -->
 		<!-- BEGIN useMinifyHtml:veil -->
 		.pipe(minifyHtml())
-		.pipe(gulp.dest('{htmlDest}'))<!-- BEGIN useNotification:empty -->;<!-- END useNotification:empty -->
+		.pipe(gulp.dest('{htmlDest}'))
 		<!-- END useMinifyHtml:veil -->
 		<!-- BEGIN useBrowserSync:veil -->
 		.pipe(reload())
