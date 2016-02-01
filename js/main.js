@@ -252,18 +252,19 @@ $(function(){
 				var strings = JSON.stringify(data);
 				zip.file('data', strings);
 				var hash = zip.generate({ type: "base64" });
-				var key = "AIzaSyCfmMcmHwD_YN8vXQjJwojUP-4xKHHdaoI";
-				location.hash = hash;
+				var key = "AIzaSyCWP_hFdFq5rvUIgaZA6woBYipqm_idMCY";
+				var url = location.href + "#" + hash;
 				$.ajax({
 					url: "https://www.googleapis.com/urlshortener/v1/url?key=" + key,
 			        type: "POST",
 			        contentType: "application/json; charset=utf-8",
 			        data: JSON.stringify({
-			          longUrl: location.href,
+			          longUrl: url,
 			        }),
 			        dataType: "json",
 			        success: function(res) {
-			        	console.log(res.id);
+			        	form.data.shortenedUrl = res.id;
+			        	form.method.refresh.apply(form);
 			        },
 				})
 			}
