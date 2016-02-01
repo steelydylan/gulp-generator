@@ -590,9 +590,9 @@ gulp.task('{jsTask}',function(){
   		.pipe(browserify())
   		<!-- END useBrowserify:veil -->
   		<!-- BEGIN useUglifyJs:empty -->
-  		<!-- BEGIN useSourceMapJs:veil -->
+  		<!-- BEGIN useJsStream:veil -->
 		.pipe(sourcemaps.write())
-		<!-- END useSourceMapJs:veil -->
+		<!-- END useJsStream:veil -->
 		<!-- END useUglifyJs:empty -->
 		.pipe(gulp.dest('{jsDest}'))
 		<!-- BEGIN useUglifyJs:veil -->

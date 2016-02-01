@@ -61,7 +61,7 @@ $(function(){
 				}
 			},
 			useSourceMap:function(){
-				if(this.data.useSourceMapCss || this.data.useSourceMapJs){
+				if((this.data.useSourceMapCss && this.data.usePreprocessor) || (this.data.useAltJs && this.data.useSourceMapJs)){
 					return true;
 				}else{
 					return false;
