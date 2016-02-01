@@ -245,10 +245,43 @@ $(function(){
 				}
 				var content = zip.generate({type:"blob"});
 				saveAs(content, "gulp-generator.zip");
+			},
+			getZippedUrl:function(){
+				var zip = new JSZip();
+				var data = this.data;
+				var strings = JSON.stringify(data);
+				zip.file('data', strings);
+				var hash = zip.generate({ type: "base64" });
+				var key = "AIzaSyCfmMcmHwD_YN8vXQjJwojUP-4xKHHdaoI";
+				location.hash = hash;
+				$.ajax({
+					url: "https://www.googleapis.com/urlshortener/v1/url?key=" + key,
+			        type: "POST",
+			        contentType: "application/json; charset=utf-8",
+			        data: JSON.stringify({
+			          longUrl: location.href,
+			        }),
+			        dataType: "json",
+			        success: function(res) {
+			        	console.log(res.id);
+			        },
+				})
 			}
 		},
 	});
-	form.loadData("gulpSettings");
+	if(location.hash){
+		var zip = new JSZip();
+	    var files = zip.load(location.hash, {
+	      base64: true
+	    });
+	    var strings = files.file('data').asText();
+	    var data = JSON.parse(strings);
+	    for(var key in data){
+            form.data[key] = data[key];
+        }
+	}else{
+		form.loadData("gulpSettings");
+	}
 	var source = new Moon.View({
 		id:"source",
 		data:form.data,

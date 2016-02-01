@@ -2,3 +2,6 @@ icon-lg.png
 icon-sm.png
 icon.png
 manifest.json
+gulpfile.js
+node_modules
+package.json
