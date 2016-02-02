@@ -4,7 +4,6 @@
 	<title>gulp generator</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/acms.css">
 	<link rel="stylesheet" href="css/prism-tommorrow.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
@@ -16,406 +15,408 @@
 <iframe src="https://ghbtns.com/github-btn.html?user=steelydylan&repo=gulp-generator&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
 </div>
 <script type="text/template" id="form">
-<div class="acms-col-6">
-	<div class="acms-tabs">
-		<div class="generatorTabWrap">
-			<ul class="generatorTab">
-				<li<!-- BEGIN mode:touch#css --> class="current"<!-- END mode:touch#css -->><a href="#" data-action="changeMode(css)">css</a></li>
-				<li<!-- BEGIN mode:touch#js --> class="current"<!-- END mode:touch#js -->><a href="#" data-action="changeMode(js)">js</a></li>
-				<li<!-- BEGIN mode:touch#html --> class="current"<!-- END mode:touch#html -->><a href="#" data-action="changeMode(html)">html</a></li>
-				<li<!-- BEGIN mode:touch#other --> class="current"<!-- END mode:touch#other -->><a href="#" data-action="changeMode(other)"><!-- BEGIN lang:touch#ja -->その他<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Others<!-- END lang:touch#en --></a></li>
-			</ul>
-		</div>
-		<!-- BEGIN mode:touch#css -->
-		<div class="acms-tabs-panel">
-			<h2>CSS</h2>
-			<p>
-				<label>
-					<!-- BEGIN lang:touch#ja -->CSS（またはプロプロセッサ）のソースの場所<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Source of the CSS files(or preprocessors)<!-- END lang:touch#en -->
-					<input type="text" data-bind="cssSrc" data-action="refreshSource()">
-				</label>
-			</p>
-			<p>
-				<label>
-					<!-- BEGIN lang:touch#ja -->CSSの書き出しの場所<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->destination of the CSS files<!-- END lang:touch#en -->
-					<input type="text" data-bind="cssDest" data-action="refreshSource()">
-				</label>
-			</p>
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useCssLint" value="true" data-action="refresh()">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->CSSの構文をチェックする<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Check CSS files' syntax<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="usePreprocessor" value="true" data-action="refresh()">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->プリプロセッサーを使用する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Use CSS preprocessors<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<!-- BEGIN usePreprocessor:veil -->
+<div class="generatorGrid6">
+	<div class="generatorTabWrap">
+		<ul class="generatorTab">
+			<li<!-- BEGIN mode:touch#css --> class="current"<!-- END mode:touch#css -->><a href="#" data-action="changeMode(css)">css</a></li>
+			<li<!-- BEGIN mode:touch#js --> class="current"<!-- END mode:touch#js -->><a href="#" data-action="changeMode(js)">js</a></li>
+			<li<!-- BEGIN mode:touch#html --> class="current"<!-- END mode:touch#html -->><a href="#" data-action="changeMode(html)">html</a></li>
+			<li<!-- BEGIN mode:touch#other --> class="current"<!-- END mode:touch#other -->><a href="#" data-action="changeMode(other)"><!-- BEGIN lang:touch#ja -->その他<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Others<!-- END lang:touch#en --></a></li>
+		</ul>
+	</div>
+	<!-- BEGIN mode:touch#css -->
+	<div class="generatorPanel">
+		<h2>CSS</h2>
+		<p>
+			<label>
+				<!-- BEGIN lang:touch#ja -->CSS（またはプロプロセッサ）のソースの場所<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Source of the CSS files(or preprocessors)<!-- END lang:touch#en -->
+				<input type="text" data-bind="cssSrc" data-action="refreshSource()">
+			</label>
+		</p>
+		<p>
+			<label>
+				<!-- BEGIN lang:touch#ja -->CSSの書き出しの場所<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->destination of the CSS files<!-- END lang:touch#en -->
+				<input type="text" data-bind="cssDest" data-action="refreshSource()">
+			</label>
+		</p>
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useCssLint" value="true" data-action="refresh()">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->CSSの構文をチェックする<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Check CSS files' syntax<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="usePreprocessor" value="true" data-action="refresh()">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->プリプロセッサーを使用する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Use CSS preprocessors<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<!-- BEGIN usePreprocessor:veil -->
+		<div class="generatorSelect">
 			<select data-bind="cssPreprocessor" data-action="refresh()">
 				<option value="sass">sass</option>
 				<option value="less">less</option>
 				<option value="stylus">stylus</option>
 			</select>
-			<!-- BEGIN cssPreprocessor:touch#sass -->
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useBourbonNeat" value="true" data-action="refresh()">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->Bourbon Neatを使用する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Use Bourbon Neat<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<!-- END cssPreprocessor:touch#sass -->
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useSourceMapCss" value="true" data-action="refresh()">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->ソースマップを使用する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Use SourceMap<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<!-- END usePreprocessor:veil -->
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useAutoPrefixer" value="true" data-action="refresh()">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->オートプリフィクサーを使用する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Use autoprefixer<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useCssComb" value="true" data-action="refresh()">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->CSSのプロパティ順を整理する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Organize the order of the CSS' properties <!-- END lang:touch#en -->
-				</label>
-			</p>
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useCmq" value="true" data-action="refresh()">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->CSSのメディアクエリを整理する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Organize the media queries of CSS<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useMinifyCss" value="true" data-action="refresh()">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->CSSを圧縮する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Minify CSS files<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useConcatCss" value="true" data-action="refresh()">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->CSSを結合する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Concatatenate CSS files<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<!-- BEGIN useConcatCss:veil -->
-			<p>
-				<label>
-					<!-- BEGIN lang:touch#ja -->結合先のCSS名<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Concatatenated file name<!-- END lang:touch#en -->
-					<input type="text" data-bind="concatCss" data-action="refreshSource()">
-				</label>
-			</p>
-			<!-- END useConcatCss:veil -->
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useCssStyleGuide" value="true" data-action="refresh()">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->スタイルガイドを使用する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Use CSS' styleguide<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<!-- BEGIN useCssStyleGuide:veil -->
-			<p>
-				<label>
-					<!-- BEGIN lang:touch#ja -->スタイルガイドの出力先<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Destination of the styleguide<!-- END lang:touch#en -->
-					<input type="text" data-bind="cssStyleGuideDest" data-action="refreshSource()">
-				</label>
-			</p>
-			<!-- END useCssStyleGuide:veil -->
 		</div>
-		<!-- END mode:touch#css -->
-		<!-- BEGIN mode:touch#js -->
-		<div class="acms-tabs-panel">
-			<h2>JS</h2>
-			<p>
-				<label>
-					<!-- BEGIN lang:touch#ja -->JS（またはaltJS）のソースの場所<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Source of the JS files(or altJS)<!-- END lang:touch#en -->
-					<input type="text" data-bind="jsSrc" data-action="refreshSource()">
-				</label>
-			</p>
-			<p>
-				<label>
-					<!-- BEGIN lang:touch#ja -->JSの書き出し場所<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Destination of the JS files<!-- END lang:touch#en -->
-					<input type="text" data-bind="jsDest" data-action="refreshSource()">
-				</label>
-			</p>
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useAltJs" data-action="refresh()" value="true">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->altJSを使用する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Use altJS<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<!-- BEGIN useAltJs:veil -->
+		<!-- BEGIN cssPreprocessor:touch#sass -->
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useBourbonNeat" value="true" data-action="refresh()">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->Bourbon Neatを使用する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Use Bourbon Neat<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<!-- END cssPreprocessor:touch#sass -->
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useSourceMapCss" value="true" data-action="refresh()">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->ソースマップを使用する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Use SourceMap<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<!-- END usePreprocessor:veil -->
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useAutoPrefixer" value="true" data-action="refresh()">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->オートプリフィクサーを使用する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Use autoprefixer<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useCssComb" value="true" data-action="refresh()">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->CSSのプロパティ順を整理する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Organize the order of the CSS' properties <!-- END lang:touch#en -->
+			</label>
+		</p>
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useCmq" value="true" data-action="refresh()">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->CSSのメディアクエリを整理する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Organize the media queries of CSS<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useMinifyCss" value="true" data-action="refresh()">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->CSSを圧縮する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Minify CSS files<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useConcatCss" value="true" data-action="refresh()">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->CSSを結合する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Concatatenate CSS files<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<!-- BEGIN useConcatCss:veil -->
+		<p>
+			<label>
+				<!-- BEGIN lang:touch#ja -->結合先のCSS名<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Concatatenated file name<!-- END lang:touch#en -->
+				<input type="text" data-bind="concatCss" data-action="refreshSource()">
+			</label>
+		</p>
+		<!-- END useConcatCss:veil -->
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useCssStyleGuide" value="true" data-action="refresh()">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->スタイルガイドを使用する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Use CSS' styleguide<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<!-- BEGIN useCssStyleGuide:veil -->
+		<p>
+			<label>
+				<!-- BEGIN lang:touch#ja -->スタイルガイドの出力先<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Destination of the styleguide<!-- END lang:touch#en -->
+				<input type="text" data-bind="cssStyleGuideDest" data-action="refreshSource()">
+			</label>
+		</p>
+		<!-- END useCssStyleGuide:veil -->
+	</div>
+	<!-- END mode:touch#css -->
+	<!-- BEGIN mode:touch#js -->
+	<div class="generatorPanel">
+		<h2>JS</h2>
+		<p>
+			<label>
+				<!-- BEGIN lang:touch#ja -->JS（またはaltJS）のソースの場所<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Source of the JS files(or altJS)<!-- END lang:touch#en -->
+				<input type="text" data-bind="jsSrc" data-action="refreshSource()">
+			</label>
+		</p>
+		<p>
+			<label>
+				<!-- BEGIN lang:touch#ja -->JSの書き出し場所<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Destination of the JS files<!-- END lang:touch#en -->
+				<input type="text" data-bind="jsDest" data-action="refreshSource()">
+			</label>
+		</p>
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useAltJs" data-action="refresh()" value="true">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->altJSを使用する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Use altJS<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<!-- BEGIN useAltJs:veil -->
+		<div class="generatorSelect">
 			<select data-bind="altJs" data-action="refresh()">
 				<option value="babel">babel</option>
 				<option value="coffee">coffee</option>
 				<option value="typescript">typescript</option>
 				<option value="jsx">jsx</option>
 			</select>
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useSourceMapJs" value="true" data-action="refresh()">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->ソースマップを使用する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Use SourceMap<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<!-- END useAltJs:veil -->
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useBrowserify" data-action="refresh()" value="true">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->Browserifyを使用する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Use Browserify<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useJsHint" data-action="refresh()" value="true">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->JSの構文をチェックする<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Check JS files' syntax<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useUglifyJs" data-action="refresh()" value="true">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->JSを圧縮する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Minify JS files<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useConcatJs" data-action="refresh()" value="true">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->JSを結合する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Concatatenate JS files<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<!-- BEGIN useConcatJs:veil -->
-			<p>
-				<label>
-					<!-- BEGIN lang:touch#ja -->結合先のJS名<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Concatatenated file name<!-- END lang:touch#en -->
-					<input type="text" data-bind="concatJs" data-action="refreshSource()">
-				</label>
-			</p>
-			<!-- END useConcatJs:veil -->
 		</div>
-		<!-- END mode:touch#js -->
-		<!-- BEGIN mode:touch#html -->
-		<div class="acms-tabs-panel">
-			<h2>HTML</h2>
-			<p>
-				<label>
-					<!-- BEGIN lang:touch#ja -->HTML（またはテンプレートエンジン）のソースの場所<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Source of HTML files(or template engine)<!-- END lang:touch#en -->
-					<input type="text" data-bind="htmlSrc" data-action="refreshSource()">
-				</label>
-			</p>
-			<p>
-				<label>
-					<!-- BEGIN lang:touch#ja -->HTMLの書き出しの場所<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Destination of HTML files<!-- END lang:touch#en -->
-					<input type="text" data-bind="htmlDest" data-action="refreshSource()">
-				</label>
-			</p>
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useTemplateEngine" data-action="refresh()" value="true">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->テンプレートエンジンを利用する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Use template engine<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<!-- BEGIN useTemplateEngine:veil -->
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useSourceMapJs" value="true" data-action="refresh()">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->ソースマップを使用する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Use SourceMap<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<!-- END useAltJs:veil -->
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useBrowserify" data-action="refresh()" value="true">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->Browserifyを使用する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Use Browserify<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useJsHint" data-action="refresh()" value="true">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->JSの構文をチェックする<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Check JS files' syntax<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useUglifyJs" data-action="refresh()" value="true">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->JSを圧縮する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Minify JS files<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useConcatJs" data-action="refresh()" value="true">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->JSを結合する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Concatatenate JS files<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<!-- BEGIN useConcatJs:veil -->
+		<p>
+			<label>
+				<!-- BEGIN lang:touch#ja -->結合先のJS名<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Concatatenated file name<!-- END lang:touch#en -->
+				<input type="text" data-bind="concatJs" data-action="refreshSource()">
+			</label>
+		</p>
+		<!-- END useConcatJs:veil -->
+	</div>
+	<!-- END mode:touch#js -->
+	<!-- BEGIN mode:touch#html -->
+	<div class="generatorPanel">
+		<h2>HTML</h2>
+		<p>
+			<label>
+				<!-- BEGIN lang:touch#ja -->HTML（またはテンプレートエンジン）のソースの場所<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Source of HTML files(or template engine)<!-- END lang:touch#en -->
+				<input type="text" data-bind="htmlSrc" data-action="refreshSource()">
+			</label>
+		</p>
+		<p>
+			<label>
+				<!-- BEGIN lang:touch#ja -->HTMLの書き出しの場所<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Destination of HTML files<!-- END lang:touch#en -->
+				<input type="text" data-bind="htmlDest" data-action="refreshSource()">
+			</label>
+		</p>
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useTemplateEngine" data-action="refresh()" value="true">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->テンプレートエンジンを利用する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Use template engine<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<!-- BEGIN useTemplateEngine:veil -->
+		<div class="generatorSelect">
 			<select data-bind="templateEngine" data-action="refresh()">
 				<option>ejs</option>
 				<option>jade</option>
 			</select>
-			<!-- END useTemplateEngine:veil -->
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useMinifyHtml" data-action="refresh()" value="true">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->HTMLを圧縮する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Minify HTML files<!-- END lang:touch#en -->
-				</label>
-			</p>
 		</div>
-		<!-- END mode:touch#html -->
-		<!-- BEGIN mode:touch#other -->
-		<div class="acms-tabs-panel">
-			<h2><!-- BEGIN lang:touch#ja -->その他<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Others<!-- END lang:touch#en --></h2>
-			<h3><!-- BEGIN lang:touch#ja -->通知<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Notification<!-- END lang:touch#en --></h3>
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useNotification" data-action="refresh()" value="true">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->タスクが完了したら通知する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Notify When the tasks finished<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<h3>BrowserSync</h3>
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useBrowserSync" data-action="refresh()" value="true">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->BrowserSyncを利用する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Use BrowserSync<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<!-- BEGIN useBrowserSync:veil -->
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="browserSyncLocal" data-action="refresh()" value="true">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->static serverで使用する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Use it in a static server<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<p>
-				<label>
-					<!-- BEGIN browserSyncLocal:veil -->
-						<!-- BEGIN lang:touch#ja -->BrowserSyncを起動するディレクトリ<!-- END lang:touch#ja -->
-						<!-- BEGIN lang:touch#en -->BrowserSync firing directory<!-- END lang:touch#en -->
-					<!-- END browserSyncLocal:veil -->
-					<!-- BEGIN browserSyncLocal:empty -->
-						<!-- BEGIN lang:touch#ja -->BrowserSyncを起動するホスト<!-- END lang:touch#ja -->
-						<!-- BEGIN lang:touch#en -->BrowserSync firing Host<!-- END lang:touch#en -->
-					<!-- END browserSyncLocal:empty -->
-					<input type="text" data-bind="browserSyncDir" data-action="refreshSource()">
-				</label>
-			</p>
-			<!-- END useBrowserSync:veil -->
-			<h3><!-- BEGIN lang:touch#ja -->画像<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Image<!-- END lang:touch#en --></h3>
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useImageMin" data-action="refresh()" value="true">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->画像を圧縮する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Optimize image files<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<!-- BEGIN useImageMin:veil -->
-			<p>
-				<label>
-					<!-- BEGIN lang:touch#ja -->圧縮前の画像のパス<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Source of the pre-optimized image files<!-- END lang:touch#en -->
-					<input type="text" data-bind="imageSrc" data-action="refreshSource()">
-				</label>
-			</p>
-			<p>
-				<label>
-					<!-- BEGIN lang:touch#ja -->圧縮後の画像のパス<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Destination of the optimized image files<!-- END lang:touch#en -->
-					<input type="text" data-bind="imageDest" data-action="refreshSource()">
-				</label>
-			</p>
-			<!-- END useImageMin:veil -->
-			<h3><!-- BEGIN lang:touch#ja -->アイコンフォント<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Icon font<!-- END lang:touch#en --></h3>
-			<p>
-				<label class="acms-form-checkbox">
-					<input type="checkbox" data-bind="useIconFont" data-action="refresh()" value="true">
-					<i class="acms-ico-checkbox"></i>
-					<!-- BEGIN lang:touch#ja -->アイコンフォントを作成する<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Create icon fonts<!-- END lang:touch#en -->
-				</label>
-			</p>
-			<!-- BEGIN useIconFont:veil -->
-			<p>
-				<label>
-					<!-- BEGIN lang:touch#ja -->フォントの名前<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Font's name<!-- END lang:touch#en -->
-					<input type="text" data-bind="iconFontName" data-action="refreshSource()">
-				</label>
-			</p>
-			<p>
-				<label>
-					<!-- BEGIN lang:touch#ja -->フォントのクラス名のプリフィックス<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->The prefix of the font's class name<!-- END lang:touch#en -->
-					<input type="text" data-bind="iconFontCssPrefix" data-action="refreshSource()">
-				</label>
-			</p>
-			<p>
-				<label>
-					<!-- BEGIN lang:touch#ja -->フォントの生成元<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Source of the fonts<!-- END lang:touch#en -->
-					<input type="text" data-bind="iconFontSrc" data-action="refreshSource()">
-				</label>
-			</p>
-			<p>
-				<label>
-					<!-- BEGIN lang:touch#ja -->フォントの出力先<!-- END lang:touch#ja -->
-					<!-- BEGIN lang:touch#en -->Destination of the fonts<!-- END lang:touch#en -->
-					<input type="text" data-bind="iconFontDest" data-action="refreshSource()">
-				</label>
-			</p>
-			<!-- END useIconFont:veil -->
-		</div>
-		<!-- END mode:touch#other -->
+		<!-- END useTemplateEngine:veil -->
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useMinifyHtml" data-action="refresh()" value="true">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->HTMLを圧縮する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Minify HTML files<!-- END lang:touch#en -->
+			</label>
+		</p>
 	</div>
+	<!-- END mode:touch#html -->
+	<!-- BEGIN mode:touch#other -->
+	<div class="generatorPanel">
+		<h2><!-- BEGIN lang:touch#ja -->その他<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Others<!-- END lang:touch#en --></h2>
+		<h3><!-- BEGIN lang:touch#ja -->通知<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Notification<!-- END lang:touch#en --></h3>
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useNotification" data-action="refresh()" value="true">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->タスクが完了したら通知する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Notify When the tasks finished<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<h3>BrowserSync</h3>
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useBrowserSync" data-action="refresh()" value="true">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->BrowserSyncを利用する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Use BrowserSync<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<!-- BEGIN useBrowserSync:veil -->
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="browserSyncLocal" data-action="refresh()" value="true">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->static serverで使用する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Use it in a static server<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<p>
+			<label>
+				<!-- BEGIN browserSyncLocal:veil -->
+					<!-- BEGIN lang:touch#ja -->BrowserSyncを起動するディレクトリ<!-- END lang:touch#ja -->
+					<!-- BEGIN lang:touch#en -->BrowserSync firing directory<!-- END lang:touch#en -->
+				<!-- END browserSyncLocal:veil -->
+				<!-- BEGIN browserSyncLocal:empty -->
+					<!-- BEGIN lang:touch#ja -->BrowserSyncを起動するホスト<!-- END lang:touch#ja -->
+					<!-- BEGIN lang:touch#en -->BrowserSync firing Host<!-- END lang:touch#en -->
+				<!-- END browserSyncLocal:empty -->
+				<input type="text" data-bind="browserSyncDir" data-action="refreshSource()">
+			</label>
+		</p>
+		<!-- END useBrowserSync:veil -->
+		<h3><!-- BEGIN lang:touch#ja -->画像<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Image<!-- END lang:touch#en --></h3>
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useImageMin" data-action="refresh()" value="true">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->画像を圧縮する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Optimize image files<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<!-- BEGIN useImageMin:veil -->
+		<p>
+			<label>
+				<!-- BEGIN lang:touch#ja -->圧縮前の画像のパス<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Source of the pre-optimized image files<!-- END lang:touch#en -->
+				<input type="text" data-bind="imageSrc" data-action="refreshSource()">
+			</label>
+		</p>
+		<p>
+			<label>
+				<!-- BEGIN lang:touch#ja -->圧縮後の画像のパス<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Destination of the optimized image files<!-- END lang:touch#en -->
+				<input type="text" data-bind="imageDest" data-action="refreshSource()">
+			</label>
+		</p>
+		<!-- END useImageMin:veil -->
+		<h3><!-- BEGIN lang:touch#ja -->アイコンフォント<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Icon font<!-- END lang:touch#en --></h3>
+		<p>
+			<label class="generatorCheckbox">
+				<input type="checkbox" data-bind="useIconFont" data-action="refresh()" value="true">
+				<i></i>
+				<!-- BEGIN lang:touch#ja -->アイコンフォントを作成する<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Create icon fonts<!-- END lang:touch#en -->
+			</label>
+		</p>
+		<!-- BEGIN useIconFont:veil -->
+		<p>
+			<label>
+				<!-- BEGIN lang:touch#ja -->フォントの名前<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Font's name<!-- END lang:touch#en -->
+				<input type="text" data-bind="iconFontName" data-action="refreshSource()">
+			</label>
+		</p>
+		<p>
+			<label>
+				<!-- BEGIN lang:touch#ja -->フォントのクラス名のプリフィックス<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->The prefix of the font's class name<!-- END lang:touch#en -->
+				<input type="text" data-bind="iconFontCssPrefix" data-action="refreshSource()">
+			</label>
+		</p>
+		<p>
+			<label>
+				<!-- BEGIN lang:touch#ja -->フォントの生成元<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Source of the fonts<!-- END lang:touch#en -->
+				<input type="text" data-bind="iconFontSrc" data-action="refreshSource()">
+			</label>
+		</p>
+		<p>
+			<label>
+				<!-- BEGIN lang:touch#ja -->フォントの出力先<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Destination of the fonts<!-- END lang:touch#en -->
+				<input type="text" data-bind="iconFontDest" data-action="refreshSource()">
+			</label>
+		</p>
+		<!-- END useIconFont:veil -->
+	</div>
+	<!-- END mode:touch#other -->
 </div>
-<div class="acms-col-6">
-	<div class="acms-tabs">
-		<div class="generatorTabWrap">
-			<ul class="generatorTab">
-				<li<!-- BEGIN fileMode:touch#gulpfile --> class="current"<!-- END fileMode:touch#gulpfile -->><a href="#" data-action="changeFileMode(gulpfile)">gulpfile.js</a></li>
-				<li<!-- BEGIN fileMode:touch#package --> class="current"<!-- END fileMode:touch#package -->><a href="#" data-action="changeFileMode(package)">package.json</a></li>
-			</ul>
-		</div>
-		<!-- BEGIN fileMode:touch#gulpfile -->
-		<div class="acms-tabs-panel">
-			<button class="acms-btn" data-action="sourceCopy"><!-- BEGIN lang:touch#ja -->ソースをコピー<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Copy the source<!-- END lang:touch#en --></button>
-			<button class="acms-btn" data-action="downloadPackage"><!-- BEGIN lang:touch#ja -->パッケージをダウンロード<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Download the package<!-- END lang:touch#en --></button>
-			<button class="acms-btn" data-action="getZippedUrl"><!-- BEGIN lang:touch#ja -->設定URLを取得<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Get Shortened URL<!-- END lang:touch#en --></button>
-			<!-- BEGIN shortenedUrl:veil -->{shortenedUrl}<!-- END shortenedUrl:veil -->
-			<pre><code class="language-javascript" data-id="source" id="code"></code></pre>
-		</div>
-		<!-- END fileMode:touch#gulpfile -->
-		<!-- BEGIN fileMode:touch#package -->
-		<div class="acms-tabs-panel">
-		<button class="acms-btn" data-action="packageCopy"><!-- BEGIN lang:touch#ja -->ソースをコピー<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Copy the source<!-- END lang:touch#en --></button>
-		<button class="acms-btn" data-action="downloadPackage"><!-- BEGIN lang:touch#ja -->パッケージをダウンロード<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Download the package<!-- END lang:touch#en --></button>
-		<button class="acms-btn" data-action="getZippedUrl"><!-- BEGIN lang:touch#ja -->設定URLを取得<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Get Shortened URL<!-- END lang:touch#en --></button>
-			<!-- BEGIN shortenedUrl:veil -->{shortenedUrl}<!-- END shortenedUrl:veil -->
-			<pre><code class="language-javascript" data-id="package" id="jsoncode"></code>
-		</div>
-		<!-- END fileMode:touch#package -->
+<div class="generatorGrid6">
+	<div class="generatorTabWrap">
+		<ul class="generatorTab">
+			<li<!-- BEGIN fileMode:touch#gulpfile --> class="current"<!-- END fileMode:touch#gulpfile -->><a href="#" data-action="changeFileMode(gulpfile)">gulpfile.js</a></li>
+			<li<!-- BEGIN fileMode:touch#package --> class="current"<!-- END fileMode:touch#package -->><a href="#" data-action="changeFileMode(package)">package.json</a></li>
+		</ul>
 	</div>
+	<!-- BEGIN fileMode:touch#gulpfile -->
+	<div class="generatorPanel">
+		<button class="generatorBtn" data-action="sourceCopy"><!-- BEGIN lang:touch#ja -->ソースをコピー<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Copy the source<!-- END lang:touch#en --></button>
+		<button class="generatorBtn" data-action="downloadPackage"><!-- BEGIN lang:touch#ja -->パッケージをダウンロード<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Download the package<!-- END lang:touch#en --></button>
+		<button class="generatorBtn" data-action="getZippedUrl"><!-- BEGIN lang:touch#ja -->設定URLを取得<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Get Shortened URL<!-- END lang:touch#en --></button>
+		<!-- BEGIN shortenedUrl:veil -->{shortenedUrl}<!-- END shortenedUrl:veil -->
+		<pre><code class="language-javascript" data-id="source" id="code"></code></pre>
+	</div>
+	<!-- END fileMode:touch#gulpfile -->
+	<!-- BEGIN fileMode:touch#package -->
+	<div class="generatorPanel">
+	<button class="generatorBtn" data-action="packageCopy"><!-- BEGIN lang:touch#ja -->ソースをコピー<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Copy the source<!-- END lang:touch#en --></button>
+	<button class="generatorBtn" data-action="downloadPackage"><!-- BEGIN lang:touch#ja -->パッケージをダウンロード<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Download the package<!-- END lang:touch#en --></button>
+	<button class="generatorBtn" data-action="getZippedUrl"><!-- BEGIN lang:touch#ja -->設定URLを取得<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Get Shortened URL<!-- END lang:touch#en --></button>
+		<!-- BEGIN shortenedUrl:veil -->{shortenedUrl}<!-- END shortenedUrl:veil -->
+		<pre><code class="language-javascript" data-id="package" id="jsoncode"></code>
+	</div>
+	<!-- END fileMode:touch#package -->
 </div>
 </script>
 <script type="text/template" id="source">

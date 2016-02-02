@@ -5,3 +5,5 @@ manifest.json
 gulpfile.js
 node_modules
 package.json
+main.scss
+css/main.min.css

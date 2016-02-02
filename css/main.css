@@ -1,167 +1,310 @@
-/*
-acms.css上書き
-*/
-.acms-btn{
-	background-color: #333333;
-	background-image: none;
-	color: #FFFFFF;
+html {
+	box-sizing: border-box;
 }
-.acms-btn:hover{
-	background-color: #000000;
-	background-image: none;
-	color: #FFFFFF;
+
+*,
+*::after,
+*::before {
+	box-sizing: inherit;
 }
-.acms-tabs .acms-tabs-panel{
-	background:#464646;
-	border-top: none;
-	-webkit-border-radius: 3px;
-	        border-radius: 3px;
-	color: #FFFFFF;
-	text-shadow:#000 0 -1px 0;
-	margin-top: -1px;
-}
-body{
+
+body {
 	font-size: 14px;
-	padding:10px;
+	box-sizing: content-box;
+	padding: 10px;
 }
-.logo{
-	color: #333333;
-	text-shadow:#FFF 0 -1px 0;
-	font-size: 2em;
-	margin: 0 0 0.67em 0;
+
+.logo {
 	font-family: garamond;
+	font-size: 2em;
+	margin: 0 0 .67em 0;
+	color: #333;
+	text-shadow: #fff 0 -1px 0;
 }
-.sourceCopied{
+
+.sourceCopied {
 	position: fixed;
 	top: 50%;
 	left: 0;
-	background-color:rgba(0,0,0,0);
-	padding: 10px;
-	color:#FFFFFF;
-	text-align: center;
 	width: 100%;
+	padding: 10px;
 	-webkit-transition: background-color .2s ease-in;
-	   -moz-transition: background-color .2s ease-in;
-	    -ms-transition: background-color .2s ease-in;
-	     -o-transition: background-color .2s ease-in;
-	        transition: background-color .2s ease-in;
+	transition: background-color .2s ease-in;
+	text-align: center;
+	color: #fff;
+	background-color: transparent;
 }
-.sourceCopied.active{
-	background-color:rgba(0,0,0,0.9);
+
+.sourceCopied.active {
+	background-color: rgba(0, 0, 0, .9);
 }
-.githubBox{
+
+.githubBox {
 	padding: 15px 10px;
 }
-.generatorTabWrap{
+
+.generatorTabWrap {
 	margin: 0 3px;
 }
+
 .generatorTab {
-  height:30px;
-  background:#FFFFFF;
-  border-bottom:1px solid #333;
-  margin:0;
-  padding:10px 16px 0;
-  list-style:none;
+	height: 30px;
+	margin: 0;
+	padding: 10px 16px 0;
+	list-style: none;
+	border-bottom: 1px solid #333;
+	background: #fff;
 }
- 
+
 .generatorTab li {
-  float:left;
-  margin:0 20px 0 0;
-  padding:0;
+	float: left;
+	margin: 0 20px 0 0;
+	padding: 0;
 }
- 
+
 .generatorTab a {
-  display:block;
-  color:#FFFFFF;
-  text-decoration:none;
-  padding:0 15px;
-  line-height:29px;
-  height:29px;
-  font-weight:bold;
-  background:#666666;
-  border:1px solid #333;
-  border-bottom:none;
-  -webkit-font-smoothing:antialiased;
-  -webkit-border-top-left-radius:8px;
-  -webkit-border-top-right-radius:8px;
-  -moz-border-radius:8px 8px 0 0;
-  border-top-left-radius:8px;
-  border-top-right-radius:8px;
-  text-shadow:#000 0 -1px 0;
-  /* This is to prevent jagged borders in Webkit. */
-  -webkit-background-clip: padding-box;
+	font-weight: bold;
+	line-height: 29px;
+	display: block;
+	height: 29px;
+	padding: 0 15px;
+	text-decoration: none;
+	color: #fff;
+	border: 1px solid #333;
+	border-bottom: none;
+	-moz-border-radius: 8px 8px 0 0;
+	-webkit-border-top-left-radius: 8px;
+	border-top-left-radius: 8px;
+	-webkit-border-top-right-radius: 8px;
+	border-top-right-radius: 8px;
+	background: #666; /* This is to prevent jagged borders in Webkit. */
+	-webkit-background-clip: padding-box;
+	text-shadow: #000 0 -1px 0;
+	-webkit-font-smoothing: antialiased;
 }
- 
+
 .generatorTab li.current a {
-  background:#464646;
-  color:#fff;
-  height:30px;
-  text-shadow:#000 0 -1px 0;
-  /* This is to prevent jagged borders in Webkit. */
-  -webkit-background-clip: padding-box;
+	height: 30px;
+	color: #fff;
+	background: #464646; /* This is to prevent jagged borders in Webkit. */
+	-webkit-background-clip: padding-box;
+	text-shadow: #000 0 -1px 0;
 }
 
 .generatorTab li {
-  position:relative;
+	position: relative;
 }
- 
-.generatorTab li:before, .generatorTab li:after {
-  content:'';
-  width:9px;
-  height:8px;
-  position:absolute;
-  z-index:2;
-  bottom:0;
-  background:#666666;
-}
- 
-.generatorTab li:before {
-  left:-8px;
-}
- 
+
+.generatorTab li:before,
 .generatorTab li:after {
-  right:-8px;
+	position: absolute;
+	z-index: 2;
+	bottom: 0;
+	width: 9px;
+	height: 8px;
+	content: '';
+	background: #666;
 }
- 
-.generatorTab li.current:before, .generatorTab li.current:after {
-  background:#464646;
-  bottom:0;
-  -webkit-background-clip: padding-box;
+
+.generatorTab li:before {
+	left: -8px;
+}
+
+.generatorTab li:after {
+	right: -8px;
+}
+
+.generatorTab li.current:before,
+.generatorTab li.current:after {
+	bottom: 0;
+	background: #464646;
+	-webkit-background-clip: padding-box;
 }
 
 .generatorTab a {
-  position:relative;
+	position: relative;
 }
- 
-.generatorTab a:before, .generatorTab a:after {
-  content:'';
-  width:10px;
-  height:8px;
-  position:absolute;
-  z-index:3;
-  bottom:-1px;
-  background:#FFFFFF;
-  overflow:hidden;
-  border-bottom:1px solid #333;
-  -webkit-background-clip: padding-box;
-}
- 
-.generatorTab a:before {
-  left:-11px;
-  border-bottom-right-radius:8px;
-  -webkit-border-bottom-right-radius:8px;
-  -moz-border-radius-bottomright:8px;
-  border-right:1px solid #222;
-}
- 
+
+.generatorTab a:before,
 .generatorTab a:after {
-  right:-11px;
-  border-bottom-left-radius:8px;
-  -webkit-border-bottom-left-radius:8px;
-  -moz-border-radius-bottomleft:8px;
-  border-left:1px solid #222;
+	position: absolute;
+	z-index: 3;
+	bottom: -1px;
+	overflow: hidden;
+	width: 10px;
+	height: 8px;
+	content: '';
+	border-bottom: 1px solid #333;
+	background: #fff;
+	-webkit-background-clip: padding-box;
 }
- 
-.generatorTab li.current a:before, .generatorTab li.current a:after {
-  bottom:0;
+
+.generatorTab a:before {
+	left: -11px;
+	border-right: 1px solid #222;
+	-webkit-border-bottom-right-radius: 8px;
+	-moz-border-radius-bottomright: 8px;
+	border-bottom-right-radius: 8px;
 }
+
+.generatorTab a:after {
+	right: -11px;
+	border-left: 1px solid #222;
+	-webkit-border-bottom-left-radius: 8px;
+	-moz-border-radius-bottomleft: 8px;
+	border-bottom-left-radius: 8px;
+}
+
+.generatorTab li.current a:before,
+.generatorTab li.current a:after {
+	bottom: 0;
+}
+
+.generatorGrid6 {
+	display: block;
+	float: left;
+	width: 48.82117%;
+	margin-right: 2.35765%;
+}
+
+.generatorGrid6:last-child {
+	margin-right: 0;
+}
+
+.generatorPanel {
+	margin-top: -1px;
+	padding: 10px;
+	color: #fff;
+	border-top: none;
+	border-radius: 3px;
+	background: #464646;
+	text-shadow: #000 0 -1px 0;
+}
+
+.generatorPanel input {
+	font-size: 13px;
+	line-height: 1;
+	padding: 5px;
+	color: #333;
+	border: 1px solid #a7a7aa;
+	border-radius: 3px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .1) inset;
+}
+
+.generatorBtn {
+	font-size: 12px;
+	line-height: 1;
+	display: inline-block;
+	padding: 7px 10px;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	border: 1px solid #a7a7aa;
+	border-radius: 3px;
+	background-color: #ccc;
+	background-color: #333;
+	background-image: none;
+}
+
+.generatorBtn:hover {
+	color: #fff;
+	background-color: #000;
+	background-image: none;
+}
+
+/* .generatorCheckbox */
+
+.generatorCheckbox {
+	position: relative;
+	width: 20px;
+	margin: 20px auto;
+	padding-top: 2px;
+	padding-left: 20px;
+	cursor: pointer;
+}
+
+.generatorCheckbox i {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	border-radius: 4px;
+	background: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
+	background: linear-gradient(top, #222 0%, #45484d 100%);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .5), 0 1px 0 rgba(255, 255, 255, .4);
+}
+
+.generatorCheckbox i:after {
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	width: 9px;
+	height: 5px;
+	content: '';
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	opacity: 0;
+	border: 3px solid #fcfff4;
+	border-top: none;
+	border-right: none;
+	background: transparent;
+}
+
+.generatorCheckbox i:hover::after {
+	opacity: .3;
+}
+
+.generatorCheckbox input[type=checkbox] {
+	visibility: hidden;
+}
+
+.generatorCheckbox input[type=checkbox]:checked + i:after {
+	opacity: 1;
+}
+
+.generatorSelect {
+	position: relative;
+	overflow: hidden;
+	width: 120px;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	background: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
+	background: linear-gradient(top, #222 0%, #45484d 100%);
+}
+
+.generatorSelect:before {
+	position: absolute;
+	z-index: 0;
+	top: 50%;
+	right: 10px;
+	width: 0;
+	height: 0;
+	margin-top: -3px;
+	content: '';
+	border-top: 6px solid gray;
+	border-right: 6px solid transparent;
+	border-left: 6px solid transparent;
+}
+
+.generatorSelect select {
+	position: relative;
+	z-index: 1;
+	width: 130%;
+	padding: 5px 8px;
+	border: none;
+	background-color: transparent;
+	background-image: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.generatorSelect select:focus {
+	outline: none;
+}
+
