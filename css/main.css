@@ -325,7 +325,6 @@ body {
 
 .generatorModalBody {
 	overflow: hidden;
-	width: 50%;
 	max-width: 980px;
 	margin: 200px auto 0 auto;
 	-webkit-transition: -webkit-transform .3s ease-out;
