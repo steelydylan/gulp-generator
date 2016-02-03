@@ -293,6 +293,7 @@ $(function(){
 	    for(var key in data){
             form.data[key] = data[key];
         }
+        location.hash = "";
 	}else{
 		form.loadData("gulpSettings");
 	}
