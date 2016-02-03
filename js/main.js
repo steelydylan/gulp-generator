@@ -266,9 +266,20 @@ $(function(){
 			        dataType: "json",
 			        success: function(res) {
 			        	form.data.shortenedUrl = res.id;
+			        	form.data.generatorModalMode = "active";
 			        	form.method.refresh.apply(form);
+			        	$(".generatorModal")
+			        	.delayAddClass("active",100)
+			        	.delayAddClass("show",100);
 			        },
 				})
+			},
+			hideModal:function(e,a){
+				if($(this.e.target).hasClass("generatorModal")){
+					$(".generatorModal")
+				    .delayRemoveClass("show",100)
+				    .delayRemoveClass("active",100);
+				}
 			}
 		},
 	});
@@ -286,6 +297,7 @@ $(function(){
 		form.loadData("gulpSettings");
 	}
 	form.data.shortenedUrl = null;
+	form.data.generatorModalMode = null;
 	var source = new Moon.View({
 		id:"source",
 		data:form.data,

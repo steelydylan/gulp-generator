@@ -15,6 +15,29 @@
 <iframe src="https://ghbtns.com/github-btn.html?user=steelydylan&repo=gulp-generator&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
 </div>
 <script type="text/template" id="form">
+<div class="generatorModal" data-action="hideModal">
+	<div class="generatorModalBody">
+		<p class="generatorModalHeading">
+			<!-- BEGIN lang:touch#ja -->生成されたgulpfileやpackage.jsonの内容を他の人と共有できます。<!-- END lang:touch#ja -->
+			<!-- BEGIN lang:touch#en -->You can share the generated gulpfile and package.json with others<!-- END lang:touch#en -->
+		</p>
+		<div class="generatorModalInner">
+			<input type="text" value="{shortenedUrl}" class="generatorShareInput">
+			<a href="https://twitter.com/intent/tweet?url={shortenedUrl}&hashtags=gulp-generator" class="generatorBtn twitter" target="_blank">
+				<!-- BEGIN lang:touch#ja -->Twitterで共有<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Share on Twitter<!-- END lang:touch#en -->
+			</a>
+			<a href="https://www.facebook.com/sharer/sharer.php?u={shortenedUrl}" class="generatorBtn facebook" target="_blank">
+				<!-- BEGIN lang:touch#ja -->Facebookで共有<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Share on Facebook<!-- END lang:touch#en -->
+			</a>
+			<a href="http://getpocket.com/edit?url={shortenedUrl}&title=gulp-generator" class="generatorBtn pocket" target="_blank">
+				<!-- BEGIN lang:touch#ja -->Pocketに保存<!-- END lang:touch#ja -->
+				<!-- BEGIN lang:touch#en -->Save on Pocket<!-- END lang:touch#en -->
+			</a>
+		</div>
+	</div>
+</div>
 <div class="generatorGrid6">
 	<div class="generatorTabWrap">
 		<ul class="generatorTab">
@@ -403,8 +426,7 @@
 	<div class="generatorPanel">
 		<button class="generatorBtn" data-action="sourceCopy"><!-- BEGIN lang:touch#ja -->ソースをコピー<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Copy the source<!-- END lang:touch#en --></button>
 		<button class="generatorBtn" data-action="downloadPackage"><!-- BEGIN lang:touch#ja -->パッケージをダウンロード<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Download the package<!-- END lang:touch#en --></button>
-		<button class="generatorBtn" data-action="getZippedUrl"><!-- BEGIN lang:touch#ja -->設定URLを取得<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Get Shortened URL<!-- END lang:touch#en --></button>
-		<!-- BEGIN shortenedUrl:veil -->{shortenedUrl}<!-- END shortenedUrl:veil -->
+		<button class="generatorBtn" data-action="getZippedUrl"><!-- BEGIN lang:touch#ja -->URLを共有<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Share the URL<!-- END lang:touch#en --></button>
 		<pre><code class="language-javascript" data-id="source" id="code"></code></pre>
 	</div>
 	<!-- END fileMode:touch#gulpfile -->
@@ -412,8 +434,7 @@
 	<div class="generatorPanel">
 	<button class="generatorBtn" data-action="packageCopy"><!-- BEGIN lang:touch#ja -->ソースをコピー<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Copy the source<!-- END lang:touch#en --></button>
 	<button class="generatorBtn" data-action="downloadPackage"><!-- BEGIN lang:touch#ja -->パッケージをダウンロード<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Download the package<!-- END lang:touch#en --></button>
-	<button class="generatorBtn" data-action="getZippedUrl"><!-- BEGIN lang:touch#ja -->設定URLを取得<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Get Shortened URL<!-- END lang:touch#en --></button>
-		<!-- BEGIN shortenedUrl:veil -->{shortenedUrl}<!-- END shortenedUrl:veil -->
+	<button class="generatorBtn" data-action="getZippedUrl"><!-- BEGIN lang:touch#ja -->URLを共有<!-- END lang:touch#ja --><!-- BEGIN lang:touch#en -->Share the URL<!-- END lang:touch#en --></button>
 		<pre><code class="language-javascript" data-id="package" id="jsoncode"></code>
 	</div>
 	<!-- END fileMode:touch#package -->
@@ -812,6 +833,7 @@ gulp.task('default',function(){
 </script>
 	<div data-id="form" class="acms-form"></div>
 	<script src="js/jquery.js"></script>
+	<script src="js/jquery.delayClass.js"></script>
 	<script src="js/jquery.i18n.properties.js"></script>
 	<script src="js/prism.js"></script>
 	<script src="js/jszip.min.js"></script>

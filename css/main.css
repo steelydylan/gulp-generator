@@ -308,3 +308,80 @@ body {
 	outline: none;
 }
 
+.generatorModal {
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	display: none;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, .3);
+}
+
+.generatorModal.active {
+	display: block;
+}
+
+.generatorModalBody {
+	overflow: hidden;
+	width: 50%;
+	max-width: 980px;
+	margin: 200px auto 0 auto;
+	-webkit-transition: -webkit-transform .3s ease-out;
+	transition: -webkit-transform .3s ease-out;
+	transition: transform .3s ease-out;
+	transition: transform .3s ease-out, -webkit-transform .3s ease-out;
+	-webkit-transform: translate(0, -200px);
+	transform: translate(0, -200px);
+	border-radius: 3px;
+	background-color: #fff;
+}
+
+.generatorModalHeading {
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 1;
+	margin: 0;
+	padding: 10px 20px;
+	color: #333;
+	background-color: #eee;
+}
+
+.generatorModalInner {
+	padding: 20px;
+}
+
+.generatorModal.show .generatorModalBody {
+	-webkit-transform: translate(0, 0);
+	transform: translate(0, 0);
+}
+
+.generatorBtn {
+	font-size: 14px;
+	display: inline-block;
+	padding: 5px 10px;
+	color: #fff;
+	border-radius: 3px;
+	background-color: #333;
+}
+
+.generatorBtn.facebook {
+	background-color: #3b5998;
+}
+
+.generatorBtn.twitter {
+	background-color: #55acee;
+}
+
+.generatorBtn.pocket {
+	background-color: #ef4056;
+}
+
+.generatorShareInput {
+	font-size: 14px;
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
