@@ -325,7 +325,7 @@ body {
 
 .generatorModalBody {
 	overflow: hidden;
-	max-width: 980px;
+	max-width: 800px;
 	margin: 200px auto 0 auto;
 	-webkit-transition: -webkit-transform .3s ease-out;
 	transition: -webkit-transform .3s ease-out;
@@ -349,6 +349,7 @@ body {
 
 .generatorModalInner {
 	padding: 20px;
+	text-align: right;
 }
 
 .generatorModal.show .generatorModalBody {
