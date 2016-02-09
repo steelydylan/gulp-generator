@@ -1,4 +1,6 @@
 #[gulp-generator](http://steelydylan.github.io/gulp-generator/)
+[![Join the chat at https://gitter.im/steelydylan/gulp-generator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/steelydylan/gulp-generator)
+
 Recommendable for those who often forget how to write gulpfile or for those who like GUI like me!!
 
 ScreenShot
@@ -65,8 +67,3 @@ Option
 - gulp-notify
 - gulp-plumber
 - gulp-rename
-
-
-
-
-
