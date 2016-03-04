@@ -490,7 +490,7 @@ var cmq = require('gulp-merge-media-queries');
 var frontnote = require('gulp-frontnote');
 <!-- END useCssStyleGuide:veil -->
 <!-- BEGIN useMinifyCss:veil -->
-var minifyCss = require('gulp-minify-css');
+var cleanCss = require('gulp-clean-css');
 <!-- END useMinifyCss:veil -->
 <!-- BEGIN useAltJs:veil -->
 <!-- BEGIN altJs:touch#coffee -->
@@ -582,7 +582,7 @@ gulp.task('{cssTask}',function(){
 		.pipe(rename({
 			suffix: '.min'
 		}))
-		.pipe(minifyCss())
+		.pipe(cleanCss())
 		<!-- BEGIN useCssStream:veil -->
 		.pipe(sourcemaps.write())
 		<!-- END useCssStream:veil -->
@@ -763,7 +763,7 @@ gulp.task('default',function(){
 		"gulp-merge-media-queries": "*"<!-- END useCmq:veil --><!-- BEGIN useCssLint:veil -->,
 		"gulp-csslint": "*"<!-- END useCssLint:veil --><!-- BEGIN useCssStyleGuide:veil -->,
 		"gulp-frontnote": "*"<!-- END useCssStyleGuide:veil --><!-- BEGIN useMinifyCss:veil -->,
-		"gulp-minify-css": "*"<!-- END useMinifyCss:veil --><!-- BEGIN useAltJs:veil -->,
+		"gulp-clean-css": "*"<!-- END useMinifyCss:veil --><!-- BEGIN useAltJs:veil -->,
 		"gulp-{altJs}": "*"<!-- END useAltJs:veil --><!-- BEGIN useBrowserify:veil -->,
 		"gulp-browserify": "*"<!-- END useBrowserify:veil --><!-- BEGIN useUglifyJs:veil -->,
 		"gulp-uglify": "*"<!-- END useUglifyJs:veil --><!-- BEGIN useConcatJsOrCss:veil -->,
