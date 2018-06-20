@@ -577,7 +577,7 @@ gulp.task('{cssTask}',function(){
         <!-- END useCmq:veil -->
         <!-- BEGIN useCssLint:veil -->
         .pipe(csslint())
-        .pipe(csslint.reporter())
+        .pipe(csslint.formatter())
         <!-- END useCssLint:veil -->
         <!-- BEGIN useConcatCss:veil -->
         .pipe(concat('{concatCss}'))
